@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil Desa Gunung Sari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+    
+    /* --- CSS untuk Bagan Struktur Organisasi --- */
+    .org-chart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /* Menambahkan scroll horizontal jika layar terlalu kecil */
+        overflow-x: auto;
+        padding-bottom: 24px;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .org-chart::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+
+    /* Node/Kartu untuk setiap jabatan */
+    .org-chart .node {
+        background-color: #ffffff;
+        border: 2px solid  #327A6D; /* Warna hijau dari tailwind: green-500 */
+        border-radius: 0.75rem; /* rounded-xl */
+        padding: 10px 15px;
+        display: inline-block;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        margin: 0 10px;
+        min-width: 160px;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .org-chart .node:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .org-chart .node .name {
+        font-weight: 600; /* font-semibold */
+        font-size: 1rem;
+        color: #1f2937; /* gray-800 */
+    }
+
+    .org-chart .node .title {
+        font-size: 0.8rem;
+        color: #6b7280; /* gray-500 */
+        text-transform: uppercase;
+        margin-top: 4px;
+    }
+
+    /* Grup untuk bawahan */
+    .org-chart .children, .org-chart .sub-children {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        padding-top: 50px; /* Jarak untuk garis dari atas */
+    }
+    
+    /* Grup untuk bawahan Sekretaris Desa */
+    .org-chart .sub-children {
+         margin-top: -20px;
+    }
+    
+    /* --- CSS untuk Garis Penghubung --- */
+    .org-chart .children::before, .org-chart .sub-children::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 25px; /* Setengah dari padding-top */
+        background-color: #d1d5db; /* gray-300 */
+        transform: translateX(-50%);
+    }
+
+    .org-chart .children::after, .org-chart .sub-children::after {
+        content: '';
+        position: absolute;
+        top: 25px;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background-color: #d1d5db; /* gray-300 */
+    }
+
+    .org-chart .node-container::before {
+        content: '';
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        width: 2px;
+        height: 25px;
+        background-color: #d1d5db; /* gray-300 */
+        transform: translateX(-50%);
+    }
+
+    .org-chart .node-container.root::before {
+         display: none;
+    }
+
+    .org-chart .node-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        padding: 0 5px;
+    }
+
+    .org-chart .children .node-container:first-child::after,
+    .org-chart .sub-children .node-container:first-child::after {
+        content: '';
+        position: absolute;
+        top: 25px;
+        left: 0;
+        height: 2px;
+        width: 50%;
+        background-color: #f9fafb; /* gray-50 */
+    }
+
+    .org-chart .children .node-container:last-child::after,
+    .org-chart .sub-children .node-container:last-child::after {
+        content: '';
+        position: absolute;
+        top: 25px;
+        right: 0;
+        height: 2px;
+        width: 50%;
+        background-color: #f9fafb; /* gray-50 */
+    }
+    
+    .org-chart .children .node-container:only-child::after,
+    .org-chart .sub-children .node-container:only-child::after {
+        display: none;
+    }
+  </style>
+</head>
+<body class="text-gray-800 overflow-x-hidden bg-white">
+
+  <nav class="bg-white fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+    <div class="bg-[#327A6D]  text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+      <span class="text-lg font-semibold">Desa GunungSari</span>
+    </div>
+    <ul class="hidden md:flex gap-6 text-gray-700 font-medium">
+      <li><a href="index.html" class="hover:text-green-600">🏠 Beranda</a></li>
+      <li><a href="profil.html" class="text-green-700 font-semibold">👤 Profil</a></li>
+      <li><a href="produk.html" class="hover:text-green-600">📦 Produk</a></li>
+      <li><a href="kontak.html" class="hover:text-green-600">📞 Kontak</a></li>
+    </ul>
+  </nav>
+
+  <header class="bg-[#327A6D] text-white pt-28 pb-16 text-center">
+    <h1 class="text-4xl font-extrabold mb-2">Profil Desa Gunung Sari</h1>
+    <p class="text-lg">Informasi umum dan sejarah perkembangan desa</p>
+  </header>
+
+  <main class="py-16 px-6 max-w-7xl mx-auto">
+    <section class="mb-16" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-4">Tentang Desa</h2>
+      <p class="text-gray-700 text-sm leading-relaxed">
+        <p></p>Desa Gunungsari sebagai pusat kegiatan industri, 
+        pertanian dan juga sentra UMKM yang melimpah. Desa Gunungsari merupakan salah satu desa penghasil buah siwalan dan legen terbesar di Kecamatan Beji Kabupaten Pasuruan. Selain itu desa gunungsari juga memiliki kontur alam yang sangat indah salah satunya adanya petilasan Watu Lanang dan Sumber Asin. Secara demografis desa Gunungsari di kelilingi Industri dan perbukitan dengan pohon siwalan yang melimpah, Sehingga kondisi sosialnya cenderung heterogen namun masih menjungjung tinggi gotong royong. Mata Pencaharian masyarakat desa Gunungsari di dominasi oleh tenaga kerja industry dan petani siwalan. </p>
+      </p>
+    </section>
+
+    <section class="mb-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center" data-aos="zoom-in">
+  <div class="bg-[#327A6D] rounded-lg p-6 shadow">
+    <h3 class="text-xl font-semibold text-white">5.434</h3>
+    <p class="text-sm text-white">Jumlah Penduduk</p>
+  </div>
+  <div class="bg-[#327A6D] rounded-lg p-6 shadow">
+    <h3 class="text-xl font-semibold text-white">3,8 Km²</h3>
+    <p class="text-sm text-white">Luas Wilayah</p>
+  </div>
+  <div class="bg-[#327A6D] rounded-lg p-6 shadow">
+    <h3 class="text-xl font-semibold text-white">25</h3>
+    <p class="text-sm text-white">UMKM Aktif</p>
+  </div>
+  <div class="bg-[#327A6D] rounded-lg p-6 shadow">
+    <h3 class="text-xl font-semibold text-white">Desa Kaya Siwalan</h3>
+    <p class="text-sm text-white">Sumber Daya Alam</p>
+  </div>
+</section>
+
+    <section class="mb-16 bg-gray-50 p-8 rounded-lg" data-aos="fade-right">
+      <h2 class="text-2xl font-bold mb-4">Visi & Misi</h2>
+      <p class="mb-2"><strong>Visi:</strong>Mewujudkan Desa Gunungsari Yang Tentram, Adil, Makmur, Sejahtera Dan Bermartabat. </p>
+      <p class="mb-2"><strong>Misi:</strong></p>
+      <ul class="list-disc pl-6 text-sm text-gray-700 space-y-1">
+        <li>Meningkatkan kinerja aparatur desa, demi pelayanan masyarakat yang prima</li>
+        <li>Pengelolaan anggaran dana desa secara transparent dengan melibatkan element masyarakat</li>
+        <li>Mengembangkan organisasi kemasyarakatan, kepemudaan dan keagamaan </li>
+        <li>Memberdayakan potensi pemuda dan masyarakat serta pengurangan pengangguran. </li>
+      </ul>
+    </section>
+
+    <section class="grid md:grid-cols-2 gap-8 items-center mb-16" data-aos="fade-left">
+      <img src="balai-desa.jpg" alt="Foto Desa" class="rounded-lg shadow">
+      <div>
+        <h2 class="text-2xl font-bold mb-3">Profil Desa</h2>
+        <div class="text-sm text-gray-700 leading-relaxed space-y-3">
+          <p>Desa Gunungsari merupakan salah satu desa yang terletak di Kecamatan Beji Kabupaten Pasuruan, Sejak berdirinya telah mengalami pergantian pemimpin desa melalui pemilihan demokratis. Wilayah Desa Gunungsari terletak pada wilayah dataran tinggi dengan ketinggian 110 mdpl, dengan titik koordinat garis bujur 7.6098590 dan koordinat garis lintang 112.736669. Desa Gunungsari memiliki luas sekitar 380 hektar dengan batas-batas wilayah sebagai berikut; sebelah utara berbatasan dengan desa Cangkringmalang, sebelah selatan berbatasan dengan desa Kenep, sebelah timur berbatasan dengan desa Beji, dan sebelah barat berbatasan dengan desa Wonokoyo.</p>
+          <p>Wilayah desa Gunungsari terdiri dari 7 dusun, 7 RW dan 22 RT yang merupakan wilayah administrasi desa. Terdiri dari dusun: Orokwali, Pilangbangu, Sumurwatu, Banyulegi, Tanjungsari, Gunungsari, dan Kasurejo. Pusat pemerintahan desa terletak di dusun Banyuleg. Secara aspek demografis, Jumlah penduduk Desa Gunungsari sebanyak 5.434 Jiwa dan terdapat 1.296 KK.</p>
+          <p>Mata pencaharian masyarakat Desa Gunungsari didominasi oleh buruh industri kerajinan dan petani. Desa Gunungsari memiliki potensi sumber daya alam yang melimpah, salah satunya desa Gunungsari sentra penghasil buah siwalan dan legen di Kabupaten Pasuruan, Selain itu BUMDes Gunungsari juga memiliki budidaya pertanian dan perikanan. Seperti sereh merah, pisang cavendish, ikan lele dan ikan patin.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <section class="bg-gray-50 py-16" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800">Struktur Organisasi Pemerintahan</h2>
+      <p class="text-gray-600 mt-2">Perangkat Desa Gunungsari yang Bertugas</p>
+    </div>
+    <div class="flex justify-center">
+      <img src="12.png" alt="Struktur Organisasi Desa Gunung Sari" class="max-w-full rounded-lg shadow-lg" />
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray-50 py-16" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-800">Struktur Organisasi Pemerintahan</h2>
+      <p class="text-gray-600 mt-2">Bumi Desa Gunungsari Beji</p>
+    </div>
+    <div class="flex justify-center">
+      <img src="bumdes.png" alt="Struktur Organisasi Desa Gunung Sari" class="max-w-full rounded-lg shadow-lg" />
+    </div>
+  </div>
+</section>
+
+ <!-- Prestasi 1 -->
+  <section class="bg-white py-16">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold text-gray-800">Prestasi</h2>
+      <p class="text-gray-600 mt-4 text-lg max-w-2xl mx-auto">
+        Berbagai penghargaan dan pencapaian yang telah diraih oleh Desa Gunungsari dalam berbagai bidang.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+     
+      <div class="bg-[#327A6D]  p-8 rounded-xl shadow hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center">
+        <div class="mb-4">
+          <svg class="w-14 h-14 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L15 8H21L16.5 12L18 18L12 14.5L6 18L7.5 12L3 8H9L12 2Z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800">Juara I Lomba Budidaya Lele 2010</h3>
+        <p class="text-gray-600 text-sm mt-2">Pengakuan atas kemandirian dan inovasi pembangunan desa.</p>
+      </div>
+
+      <!-- Prestasi 2 -->
+      <div class="bg-[#327A6D] p-8 rounded-xl shadow hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center">
+        <div class="mb-4">
+          <svg class="w-14 h-14 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2L20 21H4L12 2Z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800">Juara II Lomba Peternakan Sapi 2015</h3>
+        <p class="text-gray-600 text-sm mt-2">Dianugerahi atas inovasi berkelanjutan dalam ekonomi dan lingkungan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-2">BERITA TERKINI</h2>
+      <p class="text-center text-gray-600 mb-8">
+        Klik salah satu berita untuk melihat efek sorotan warna merah.
+      </p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" id="berita-list">
+        <div class="cursor-pointer bg-white shadow-md rounded overflow-hidden transition-all duration-300 ease-in-out group" onclick="highlightCard(this)">
+          <img src="balai-desa.jpg" alt="Gambar Berita" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold group-[.active]:text-white">3 Agenda Dalam 1 Hari Sekaligus</h3>
+            <p class="text-sm text-gray-600 group-[.active]:text-white mt-1"><i class="far fa-calendar-alt"></i> 29 Juni 2022</p>
+            <p class="mt-2 text-sm group-[.active]:text-white">
+              Pemerintah Desa Jogojan – Dalam agenda rapat dan musyawarah yang dilaksanakan kemarin...
+            </p>
+          </div>
+        </div>
+
+        <div class="cursor-pointer bg-white shadow-md rounded overflow-hidden transition-all duration-300 ease-in-out group" onclick="highlightCard(this)">
+          <img src="4.jpg" alt="Gambar Berita" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold group-[.active]:text-white">Pengukuran Pekerjaan Sesuai Perbup 58/2021</h3>
+            <p class="text-sm text-gray-600 group-[.active]:text-white mt-1">11 Juli 2022</p>
+            <p class="mt-2 text-sm group-[.active]:text-white">
+              Pengukuran dan evaluasi pekerjaan sesuai aturan Perbup Pemalang yang berlaku...
+            </p>
+          </div>
+        </div>
+
+        <div class="cursor-pointer bg-white shadow-md rounded overflow-hidden transition-all duration-300 ease-in-out group" onclick="highlightCard(this)">
+          <img src="3.jpg" alt="Gambar Berita" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h3 class="text-lg font-bold group-[.active]:text-white">Penyaluran BLT DD (April–Juni 2022)</h3>
+            <p class="text-sm text-gray-600 group-[.active]:text-white mt-1">16 Juni 2022</p>
+            <p class="mt-2 text-sm group-[.active]:text-white">
+              Bantuan Langsung Tunai disalurkan kepada warga yang terdampak sesuai program...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#327A6D] text-white text-center py-16 px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-3">Bergabung dengan Komunitas Kami</h2>
+    <p class="mb-6">Dukung ekonomi lokal dengan membeli produk desa</p>
+    <div class="flex justify-center gap-4 flex-wrap">
+      <a href="#" class="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded text-white">🛍️ Shopee Store</a>
+      <a href="#" class="bg-black hover:bg-gray-800 px-6 py-2 rounded text-white">🎵 TikTok Shop</a>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-white py-10 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="bg-green-600 w-8 h-8 flex items-center justify-center font-bold rounded">GS</div>
+          <span class="text-lg font-semibold">Desa Gunung Sari</span>
+        </div>
+        <p class="text-sm">Desa dengan potensi alam, budaya, dan usaha mikro yang terus berkembang.</p>
+      </div>
+      <div class="mt-6 sm:mt-0">
+        <h4 class="font-bold mb-2">Kontak</h4>
+        <p class="text-sm">📍 Jl. Raya Gunung Sari No. 123</p>
+        <p class="text-sm">📞 +62 343-653-0883<</p>
+      </div>
+    </div>
+    <div class="mt-6 text-center text-sm text-gray-400">
+      &copy; 2025 Desa Gunung Sari. Semua hak dilindungi.
+    </div>
+  </footer>
+
+  <script>
+    function highlightCard(clickedCard) {
+      document.querySelectorAll("#berita-list > div").forEach(card => {
+        card.classList.remove("bg-red-600", "text-white", "active");
+        card.classList.add("bg-white", "text-black");
+      });
+      clickedCard.classList.remove("bg-white", "text-black");
+      clickedCard.classList.add("bg-red-600", "text-white", "active");
+    }
+  </script>
+
+ 
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+<script>
+  // Ganti semua card statistik dan prestasi
+  document.querySelectorAll(
+    '.bg-green-50, .bg-gray-50, .bg-white, .bg-gray-100'
+  ).forEach(el => {
+    el.classList.remove('bg-green-50', 'bg-gray-50', 'bg-white', 'bg-gray-100');
+    el.classList.add('bg-[#05221D]', 'text-white');
+    // Ganti semua teks di dalamnya jadi putih
+    el.querySelectorAll('.text-gray-800, .text-gray-700, .text-gray-600, .text-black').forEach(t => {
+      t.classList.remove('text-gray-800', 'text-gray-700', 'text-gray-600', 'text-black');
+      t.classList.add('text-white');
+    });
+  });
+
+  // Ganti card berita terkini
+  document.querySelectorAll('#berita-list > div').forEach(card => {
+    card.classList.remove('bg-white', 'text-black');
+    card.classList.add('bg-[#05221D]', 'text-white');
+    card.querySelectorAll('.text-gray-800, .text-gray-700, .text-gray-600, .text-black').forEach(t => {
+      t.classList.remove('text-gray-800', 'text-gray-700', 'text-gray-600', 'text-black');
+      t.classList.add('text-white');
+    });
+  });
+
+  // Perbaiki highlightCard agar tidak kembali ke putih
+  window.highlightCard = function(clickedCard) {
+    document.querySelectorAll("#berita-list > div").forEach(card => {
+      card.classList.remove("bg-red-600", "active");
+      card.classList.add("bg-[#05221D]", "text-white");
+    });
+    clickedCard.classList.remove("bg-[#05221D]");
+    clickedCard.classList.add("bg-[#327a6d]", "text-white", "active");
+  };
+</script>
+</body>
+</html>

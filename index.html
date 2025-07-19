@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desa Gunung Sari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+    .hero-section {
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+  </style>
+</head>
+<body class="text-gray-800 overflow-x-hidden bg-[#05221D]">
+
+  <!-- Navbar -->
+  <nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+      <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
+    </div>
+
+    <!-- Tombol Hamburger (Mobile Only) -->
+    <button id="mobile-menu-button" class="md:hidden text-white transition-transform duration-300">
+      <i class="fas fa-bars fa-lg"></i>
+    </button>
+
+    <!-- Menu Desktop -->
+    <ul class="hidden md:flex gap-6 text-white font-medium">
+      <li><a href="index.html" class="text-green-700 font-semibold">🏠 Beranda</a></li>
+      <li><a href="profil.html" class="hover:text-green-600">👤 Profil</a></li>
+      <li><a href="produk.html" class="hover:text-green-600">📦 Produk</a></li>
+      <li><a href="kontak.html" class="hover:text-green-600">📞 Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- Menu Mobile (Muncul saat hamburger diklik) -->
+  <ul id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#05221D] text-white text-center gap-4 py-4 mt-[72px] shadow transition-all duration-300 ease-in-out">
+    <li><a href="index.html" class="text-green-700 font-semibold">🏠 Beranda</a></li>
+    <li><a href="profil.html" class="hover:text-green-600">👤 Profil</a></li>
+    <li><a href="produk.html" class="hover:text-green-600">📦 Produk</a></li>
+    <li><a href="kontak.html" class="hover:text-green-600">📞 Kontak</a></li>
+  </ul>
+
+  <!-- Hero -->
+  <section class="hero-section h-screen flex flex-col justify-center items-center text-center text-white px-4 pt-24" id="hero">
+    <div data-aos="fade-up">
+      <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 drop-shadow-lg">
+        Selamat Datang di <br><span class="text-yellow-300">Desa Gunungsari</span>
+      </h1>
+      <p class="text-lg max-w-xl mx-auto drop-shadow">
+        Temukan keindahan alam dan produk asli dari desa yang sejuk dan lestari
+      </p>
+    </div>
+  </section>
+
+  <!-- Produk -->
+  <section id="produk" class="bg-[#05221D] py-20 px-4">
+    <div class="max-w-6xl mx-auto text-center mb-10" data-aos="fade-down" data-aos-duration="1000">
+      <h2 class="text-3xl font-bold mb-2 text-white">Produk Unggulan</h2>
+      <p class="text-yellow-300">Dibuat langsung oleh petani dan pengrajin Desa Gunungsari</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      <!-- Produk 1 -->
+      <div class="bg-white shadow rounded-lg overflow-hidden relative p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="0">
+        <img src="produk1.jpg" alt="Kopi" class="rounded mb-3 w-full object-cover h-48 transition duration-300 hover:brightness-95" />
+        <h3 class="font-semibold text-lg text-gray-800">Kopi Arabika Premium</h3>
+        <p class="text-sm text-gray-600 mb-2">Dari lereng gunung dengan cita rasa khas</p>
+        <div class="flex justify-between items-center">
+          <span class="text-green-700 font-bold">Rp 85.000</span>
+          <a href="produk.html" class="bg-[#327A6D] text-white px-4 py-2 text-sm rounded hover:bg-green-700 transition">Beli</a>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="bg-white shadow rounded-lg overflow-hidden relative p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="300">
+        <img src="produk3.jpg" alt="Madu" class="rounded mb-3 w-full object-cover h-48 transition duration-300 hover:brightness-95" />
+        <h3 class="font-semibold text-lg text-gray-800">Madu Hutan Asli</h3>
+        <p class="text-sm text-gray-600 mb-2">Murni dari hutan sekitar desa</p>
+        <div class="flex justify-between items-center">
+          <span class="text-green-700 font-bold">Rp 120.000</span>
+          <a href="produk.html" class="bg-[#327A6D] text-white px-4 py-2 text-sm rounded hover:bg-green-700 transition">Beli</a>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="bg-white shadow rounded-lg overflow-hidden relative p-4 transform transition duration-300 hover:scale-105 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
+        <img src="produk4.jpg" alt="Keripik" class="rounded mb-3 w-full object-cover h-48 transition duration-300 hover:brightness-95" />
+        <h3 class="font-semibold text-lg text-gray-800">Keripik Singkong</h3>
+        <p class="text-sm text-gray-600 mb-2">Renyah, gurih, berbagai varian rasa</p>
+        <div class="flex justify-between items-center">
+          <span class="text-green-700 font-bold">Rp 25.000</span>
+          <a href="produk.html" class="bg-[#327A6D] text-white px-4 py-2 text-sm rounded hover:bg-green-700 transition">Beli</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Button Lihat Semua Produk -->
+  <div class="mt-10 mb-10 text-center">
+    <a href="produk.html" style="background-color: #327A6D;" class="inline-flex items-center gap-2 px-6 py-3 text-white rounded hover:bg-green-700 transition text-sm font-semibold shadow">
+      Lihat Semua Produk
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+
+  <!-- Ajakan -->
+  <section class="text-white text-center py-10 px-6" style="background-color: #05221d;" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-3">Bergabung dengan Komunitas Kami</h2>
+    <p class="mb-6">Dukung ekonomi lokal dengan membeli produk desa</p>
+    <div class="flex justify-center gap-4 flex-wrap">
+      <a href="#" class="bg-orange-500 hover:bg-orange-600 px-6 py-2 rounded">🛍️ Shopee Store</a>
+      <a href="#" class="bg-black hover:bg-gray-800 px-6 py-2 rounded">🎵 TikTok Shop</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#327A6D] text-white py-10 px-6">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="bg-green-600 w-8 h-8 flex items-center justify-center font-bold rounded">GS</div>
+          <span class="text-lg font-semibold">Desa Gunungsari</span>
+        </div>
+        <p class="text-sm">Desa dengan potensi alam, budaya, dan usaha mikro yang terus berkembang.</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Kontak</h4>
+        <p class="text-sm">📍Jln.Banyulegi RT.14 RW.05 Gunungsari, Kec.Beji, Pasuruan Jawa Timur 67154</p>
+        <p class="text-sm">📞 +62 343-653-0883</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Tautan</h4>
+        <ul class="text-sm space-y-1">
+          <li><a href="profil.html" class="hover:underline">Profil Desa</a></li>
+          <li><a href="#" class="hover:underline">Layanan Publik</a></li>
+          <li><a href="produk.html" class="hover:underline">Produk UMKM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-6 text-center text-gray-400 text-sm">&copy; 2025 Desa Gunungsari. Semua hak dilindungi.</div>
+  </footer>
+
+  <!-- Script Toggle Menu -->
+  <script>
+    const menuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Scripts animasi -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    const images = [
+      './images/gunung-sari.jpg',
+      './images/balai-desa.jpg',
+      './images/3.jpg',
+    ];
+    let current = 0;
+    const heroSection = document.querySelector('.hero-section');
+
+    function changeBackground() {
+      heroSection.style.backgroundImage = `url('${images[current]}')`;
+      current = (current + 1) % images.length;
+    }
+
+    changeBackground();
+    setInterval(changeBackground, 5000);
+  </script>
+</body>
+</html>
