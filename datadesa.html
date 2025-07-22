@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Demografi Berdasarkan Pekerjaan</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    h2, h3 {
+      text-align: center;
+    }
+    .chart-container {
+      margin-bottom: 50px;
+    }
+    canvas {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Data Demografi Berdasarkan Pekerjaan</h2>
+
+  <!-- Column Chart (vertikal biasa) -->
+  <div class="chart-container">
+    <h3>📊 Diagram Kolom Pekerjaan Penduduk</h3>
+    <canvas id="columnChart"></canvas>
+  </div>
+
+  <!-- Stacked Bar Chart -->
+  <div class="chart-container">
+    <h3>📊 Diagram Batang Stacked (Pria & Wanita)</h3>
+    <canvas id="stackedBarChart"></canvas>
+  </div>
+
+  <script>
+    const labels = [
+      'BELUM/TIDAK BEKERJA',
+      'MENGURUS RUMAH TANGGA',
+      'PELAJAR/MAHASISWA',
+      'PETANI/PEKEBUN',
+      'BURUH TANI/PERKEBUNAN',
+      'KARYAWAN SWASTA',
+      'WIRASWASTA',
+      'GURU',
+      'PNS',
+      'PEDAGANG'
+    ];
+
+    const totalData = [320, 280, 245, 190, 160, 150, 140, 120, 110, 95];
+
+    // Simulasi data pria & wanita
+    const dataPria = [180, 40, 130, 140, 110, 100, 90, 60, 70, 60];
+    const dataWanita = totalData.map((total, i) => total - dataPria[i]);
+
+    // Column Chart (vertikal biasa)
+    new Chart(document.getElementById('columnChart'), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Jumlah Total',
+          data: totalData,
+          backgroundColor: 'rgba(255, 159, 64, 0.6)',
+          borderColor: 'rgba(255, 159, 64, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Distribusi Pekerjaan Penduduk (Kolom Vertikal)'
+          },
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Jumlah Penduduk'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Kategori Pekerjaan'
+            }
+          }
+        }
+      }
+    });
+
+    // Stacked Horizontal Bar Chart
+    new Chart(document.getElementById('stackedBarChart'), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Pria',
+            data: dataPria,
+            backgroundColor: 'rgba(54, 162, 235, 0.7)'
+          },
+          {
+            label: 'Wanita',
+            data: dataWanita,
+            backgroundColor: 'rgba(255, 99, 132, 0.7)'
+          }
+        ]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Distribusi Pekerjaan Penduduk per Jenis Kelamin (Stacked)'
+          }
+        },
+        scales: {
+          x: {
+            stacked: true,
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Jumlah Penduduk'
+            }
+          },
+          y: {
+            stacked: true,
+            title: {
+              display: true,
+              text: 'Kategori Pekerjaan'
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+
+<h2>Data Demografi Berdasarkan Agama</h2>
+
+  <div class="chart-container">
+    <h3 style="text-align:center;">📊 Diagram Pie Data Agama Penduduk</h3>
+    <canvas id="agamaChart"></canvas>
+  </div>
+
+  <script>
+    const labelsAgama = [
+      'Islam',
+      'Kristen',
+      'Katholik',
+      'Hindu',
+      'Buddha',
+      'Khonghucu',
+      'Kepercayaan Lainnya',
+      'Tidak Mengisi'
+    ];
+
+    const dataAgama = [1780, 90, 45, 15, 10, 5, 3, 7]; // Contoh data, silakan sesuaikan
+
+    const warnaAgama = [
+      '#4dc9f6', '#f67019', '#f53794', '#537bc4',
+      '#acc236', '#166a8f', '#00a950', '#58595b'
+    ];
+
+    new Chart(document.getElementById('agamaChart'), {
+      type: 'pie',
+      data: {
+        labels: labelsAgama,
+        datasets: [{
+          data: dataAgama,
+          backgroundColor: warnaAgama
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Distribusi Penduduk Berdasarkan Agama'
+          },
+          legend: {
+            position: 'right'
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</body>
+</html>
