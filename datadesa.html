@@ -2,204 +2,283 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Data Demografi Berdasarkan Pekerjaan</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Demografi 3D</title>
+
+  <!-- Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+  <!-- Google Charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <!-- TailwindCSS (CDN - opsional, ganti dengan local jika ada) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome (untuk ikon hamburger) -->
+  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script> <!-- Ganti dengan kit milikmu -->
+
   <style>
     body {
       font-family: sans-serif;
+      background-color: #05221D;
+      color: white;
+      padding-top: 100px; /* agar konten tidak tertutup navbar */
       max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: auto;
     }
     h2, h3 {
       text-align: center;
+      margin-bottom: 20px;
     }
     .chart-container {
-      margin-bottom: 50px;
-    }
-    canvas {
-      max-width: 100%;
+      margin-bottom: 60px;
     }
   </style>
 </head>
-<body>
+<body class="text-white bg-[#05221D]">
 
-  <h2>Data Demografi Berdasarkan Pekerjaan</h2>
-
-  <!-- Column Chart (vertikal biasa) -->
-  <div class="chart-container">
-    <h3>📊 Diagram Kolom Pekerjaan Penduduk</h3>
-    <canvas id="columnChart"></canvas>
+<!-- Navbar -->
+<nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
+  <!-- Logo -->
+  <div class="flex items-center gap-2">
+    <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+    <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
   </div>
 
-  <!-- Stacked Bar Chart -->
-  <div class="chart-container">
-    <h3>📊 Diagram Batang Stacked (Pria & Wanita)</h3>
-    <canvas id="stackedBarChart"></canvas>
-  </div>
+  <!-- Hamburger (Mobile) -->
+  <button id="mobile-menu-button" class="md:hidden text-white transition-transform duration-300">
+    <i class="fas fa-bars fa-lg"></i>
+  </button>
 
-  <script>
+  <!-- Menu Desktop -->
+  <ul class="hidden md:flex gap-6 text-white font-medium">
+    <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+    <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+
+    <!-- Data Desa Dropdown -->
+    <li class="relative group">
+      <a href="#" class="hover:text-yellow-300">📊 Data Desa</a>
+      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+        <li><a href="datadesa.html" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan dalam KK</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Agama</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Jenis Kelamin</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Golongan Darah</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Rentang</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Kategori</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status dalam KK</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
+      </ul>
+    </li>
+
+    <!-- Regulasi Dropdown -->
+    <li class="relative group">
+      <a href="#" class="hover:text-yellow-300">⚖️ Regulasi ▾</a>
+      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
+      </ul>
+    </li>
+
+    <li><a href="program kerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
+    <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+    <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- Mobile Menu -->
+<ul id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#05221D] text-white text-center gap-4 py-4 mt-[72px] shadow transition-all duration-300 ease-in-out">
+  <li><a href="index.html" class="text-green-400 font-semibold">🏠 Beranda</a></li>
+  <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+  <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+  <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
+</ul>
+
+  <!-- Highcharts -->
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+  <!-- Google Charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #05221D;
+      color: white;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .chart-container {
+      margin-bottom: 60px;
+    }
+  </style>
+
+<h2>📊 Diagram Kolom Pekerjaan Penduduk (3D)</h2>
+<div id="columnChart3d" class="chart-container" style="height: 400px;"></div>
+
+<h2>📊 Diagram Batang Stacked (Pria & Wanita) 3D</h2>
+<div id="stackedBarChart3d" class="chart-container" style="height: 400px;"></div>
+
+<h2>📊 Diagram Pie 3D Data Agama Penduduk</h2>
+<div id="piechart3d" class="chart-container" style="height: 400px;"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
     const labels = [
-      'BELUM/TIDAK BEKERJA',
-      'MENGURUS RUMAH TANGGA',
-      'PELAJAR/MAHASISWA',
-      'PETANI/PEKEBUN',
-      'BURUH TANI/PERKEBUNAN',
-      'KARYAWAN SWASTA',
-      'WIRASWASTA',
-      'GURU',
-      'PNS',
-      'PEDAGANG'
+      'BELUM/TIDAK BEKERJA', 'MENGURUS RUMAH TANGGA', 'PELAJAR/MAHASISWA',
+      'PETANI/PEKEBUN', 'BURUH TANI/PERKEBUNAN', 'KARYAWAN SWASTA',
+      'WIRASWASTA', 'GURU', 'PNS', 'PEDAGANG'
     ];
 
     const totalData = [320, 280, 245, 190, 160, 150, 140, 120, 110, 95];
-
-    // Simulasi data pria & wanita
     const dataPria = [180, 40, 130, 140, 110, 100, 90, 60, 70, 60];
-    const dataWanita = totalData.map((total, i) => total - dataPria[i]);
+    const dataWanita = totalData.map((t, i) => t - dataPria[i]);
 
-    // Column Chart (vertikal biasa)
-    new Chart(document.getElementById('columnChart'), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Jumlah Total',
-          data: totalData,
-          backgroundColor: 'rgba(255, 159, 64, 0.6)',
-          borderColor: 'rgba(255, 159, 64, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Distribusi Pekerjaan Penduduk (Kolom Vertikal)'
-          },
-          legend: {
-            display: false
-          }
+    // Diagram Kolom 3D
+    Highcharts.chart('columnChart3d', {
+      chart: {
+        type: 'column',
+        options3d: {
+          enabled: true,
+          alpha: 10,
+          beta: 10,
+          depth: 70
         },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Jumlah Penduduk'
-            }
-          },
-          x: {
-            title: {
-              display: true,
-              text: 'Kategori Pekerjaan'
-            }
-          }
-        }
-      }
-    });
-
-    // Stacked Horizontal Bar Chart
-    new Chart(document.getElementById('stackedBarChart'), {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Pria',
-            data: dataPria,
-            backgroundColor: 'rgba(54, 162, 235, 0.7)'
-          },
-          {
-            label: 'Wanita',
-            data: dataWanita,
-            backgroundColor: 'rgba(255, 99, 132, 0.7)'
-          }
-        ]
+        backgroundColor: '#05221D'
       },
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Distribusi Pekerjaan Penduduk per Jenis Kelamin (Stacked)'
-          }
+      title: {
+        text: 'Distribusi Pekerjaan Penduduk',
+        style: { color: '#ffffff' }
+      },
+      xAxis: {
+        categories: labels,
+        labels: { style: { color: '#ffffff' } },
+        gridLineWidth: 0
+      },
+      yAxis: {
+        title: {
+          text: 'Jumlah Penduduk',
+          style: { color: '#ffffff' },
+          y: -15  // ⬅️ posisi dinaikkan
         },
-        scales: {
-          x: {
-            stacked: true,
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Jumlah Penduduk'
-            }
-          },
-          y: {
-            stacked: true,
-            title: {
-              display: true,
-              text: 'Kategori Pekerjaan'
-            }
-          }
-        }
-      }
-    });
-  </script>
-
-
-<h2>Data Demografi Berdasarkan Agama</h2>
-
-  <div class="chart-container">
-    <h3 style="text-align:center;">📊 Diagram Pie Data Agama Penduduk</h3>
-    <canvas id="agamaChart"></canvas>
-  </div>
-
-  <script>
-    const labelsAgama = [
-      'Islam',
-      'Kristen',
-      'Katholik',
-      'Hindu',
-      'Buddha',
-      'Khonghucu',
-      'Kepercayaan Lainnya',
-      'Tidak Mengisi'
-    ];
-
-    const dataAgama = [1780, 90, 45, 15, 10, 5, 3, 7]; // Contoh data, silakan sesuaikan
-
-    const warnaAgama = [
-      '#4dc9f6', '#f67019', '#f53794', '#537bc4',
-      '#acc236', '#166a8f', '#00a950', '#58595b'
-    ];
-
-    new Chart(document.getElementById('agamaChart'), {
-      type: 'pie',
-      data: {
-        labels: labelsAgama,
-        datasets: [{
-          data: dataAgama,
-          backgroundColor: warnaAgama
-        }]
+        labels: { style: { color: '#ffffff' } },
+        gridLineWidth: 0
       },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Distribusi Penduduk Berdasarkan Agama'
-          },
-          legend: {
-            position: 'right'
-          }
-        }
-      }
+      plotOptions: {
+        column: { depth: 30 }
+      },
+      series: [{
+        name: 'Jumlah Total',
+        data: totalData,
+        color: 'orange'
+      }],
+      legend: { itemStyle: { color: '#ffffff' } }
     });
-  </script>
 
-</body>
+    // Diagram Batang Stacked 3D
+    Highcharts.chart('stackedBarChart3d', {
+      chart: {
+        type: 'bar',
+        options3d: {
+          enabled: true,
+          alpha: 15,
+          beta: 15,
+          depth: 50
+        },
+        backgroundColor: '#05221D'
+      },
+      title: {
+        text: 'Distribusi Pekerjaan per Jenis Kelamin',
+        style: { color: '#ffffff' }
+      },
+      xAxis: {
+        categories: labels,
+        labels: { style: { color: '#ffffff' } },
+        gridLineWidth: 0
+      },
+      yAxis: {
+        title: {
+          text: 'Jumlah Penduduk',
+          style: { color: '#ffffff' },
+          y: -15  // ⬅️ dinaikkan juga di batang
+        },
+        labels: { style: { color: '#ffffff' } },
+        gridLineWidth: 0
+      },
+      plotOptions: {
+        series: {
+          stacking: 'normal',
+          depth: 25
+        }
+      },
+      series: [
+        {
+          name: 'Pria',
+          data: dataPria,
+          color: '#36A2EB'
+        },
+        {
+          name: 'Wanita',
+          data: dataWanita,
+          color: '#FF6384'
+        }
+      ],
+      legend: { itemStyle: { color: '#ffffff' } }
+    });
+  });
+</script>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    const data = google.visualization.arrayToDataTable([
+      ['Agama', 'Jumlah'],
+      ['Islam', 1780],
+      ['Kristen', 90],
+      ['Katholik', 45],
+      ['Hindu', 15],
+      ['Buddha', 10],
+      ['Khonghucu', 5],
+      ['Kepercayaan Lainnya', 3],
+      ['Tidak Mengisi', 7]
+    ]);
+
+    const options = {
+      title: 'Distribusi Penduduk Berdasarkan Agama',
+      is3D: true,
+      backgroundColor: '#111111',
+      titleTextStyle: {
+        color: '#ffffff',
+        fontSize: 18,
+        bold: true
+      },
+      legend: {
+        textStyle: {
+          color: '#ffffff'
+        },
+        position: 'right'
+      },
+      chartArea: {
+        width: '85%',
+        height: '80%'
+      }
+    };
+
+    const chart = new google.visualization.PieChart(document.getElementById('piechart3d'));
+    chart.draw(data, options);
+  }
+</script>
 
 </body>
 </html>
