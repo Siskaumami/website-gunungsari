@@ -51,39 +51,62 @@
     <i class="fas fa-bars fa-lg"></i>
   </button>
 
-  <!-- Menu Desktop -->
-  <ul class="hidden md:flex gap-6 text-white font-medium">
-    <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+ <!-- Beranda -->
+          <ul class="hidden md:flex gap-6 text-white font-medium">
+          <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+
+       <!-- Profil -->
+          <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+
+
+          <!-- Data Desa -->
+<li class="relative group">
+  <a href="datadesa.html" class="hover:text-yellow-300">📊 Data Desa ▾</a>
+  <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+    <li><a href="datadesa.html" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan dalam KK</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
+    <li><a href="datadesa.html" class="block px-4 py-2 hover:bg-gray-100">Data Agama</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Jenis Kelamin</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Golongan Darah</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Rentang</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Kategori</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status dalam KK</a></li>
+    <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
+  </ul>
+</li>
+      
+    <!-- dana desa -->
+          <li><a href="danadesa.html" class="hover:text-yellow-300">💰 Dana Desa</a></li>
+
+          <!-- Regulasi -->
+          <li class="relative group">
+            <button class="hover:text-yellow-300">⚖️ Regulasi ▾</button>
+            <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
+              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
+            </ul>
+          </li>
+
+          <!-- Program Kerja -->
+          <li><a href="programkerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
+
+          <!-- Produk -->
+          <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+
+          <!-- Kontak -->
+          <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Menu Mobile (Muncul saat hamburger diklik) -->
+  <ul id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#05221D] text-white text-center gap-4 py-4 mt-[72px] shadow transition-all duration-300 ease-in-out">
+    <li><a href="index.html" class="text-green-700 font-semibold">🏠 Beranda</a></li>
     <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
-
-    <!-- Data Desa Dropdown -->
-    <li class="relative group">
-      <a href="#" class="hover:text-yellow-300">📊 Data Desa</a>
-      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
-        <li><a href="datadesa.html" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan dalam KK</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Agama</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Jenis Kelamin</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Golongan Darah</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Rentang</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Kategori</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status dalam KK</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
-      </ul>
-    </li>
-
-    <!-- Regulasi Dropdown -->
-    <li class="relative group">
-      <a href="#" class="hover:text-yellow-300">⚖️ Regulasi ▾</a>
-      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
-      </ul>
-    </li>
-
-    <li><a href="program kerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
     <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
     <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
   </ul>

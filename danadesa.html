@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dana Desa - Gunung Sari</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary: #327A6D;
+      --dark: #222;
+      --light: #05221d;
+      --card-bg: #327a6d;
+      --border-radius: 12px;
+    }
+
+    body {
+      background-color: var(--light);
+      color: #ffffff;
+      padding-top: 60px;
+      font-family: 'Nunito', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#05221D] text-white">
+  <!-- Navbar -->
+  <nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+      <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
+    </div>
+    <ul class="hidden md:flex gap-6 font-medium">
+      <li><a href="index.html" class="text-white hover:text-yellow-300">🏠 Beranda</a></li>
+      <li><a href="#" class="text-yellow-300">💰 Dana Desa</a></li>
+      <li><a href="profil.html" class="text-white hover:text-yellow-300">👤 Profil</a></li>
+      <li><a href="produk.html" class="text-white hover:text-yellow-300">📦 Produk</a></li>
+      <li><a href="kontak.html" class="text-white hover:text-yellow-300">📞 Kontak</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="text-center px-4 sm:px-6 lg:px-8 py-12 bg-[#327A6D] text-white" data-aos="fade-down">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-2">Transparansi Dana Desa 2025</h1>
+    <p class="text-lg">Informasi Anggaran dan Pengeluaran Desa Gunung Sari</p>
+  </section>
+
+  <!-- Konten Dana Desa -->
+  <div class="max-w-5xl mx-auto bg-white text-gray-800 rounded-xl shadow-xl p-6 space-y-6">
+    <div class="flex justify-end">
+      <select class="border border-gray-300 rounded-md px-4 py-2">
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+      </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-green-100 border-l-8 border-green-600 p-5 rounded-xl">
+        <h3 class="text-lg font-semibold text-green-800">Pendapatan</h3>
+        <p class="text-2xl font-bold text-green-700">Rp1.633.576.496,00</p>
+      </div>
+      <div class="bg-red-100 border-l-8 border-red-600 p-5 rounded-xl">
+        <h3 class="text-lg font-semibold text-red-800">Belanja</h3>
+        <p class="text-2xl font-bold text-red-700">Rp4.988.004,96</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-100 p-5 rounded-xl">
+        <h3 class="text-md font-semibold text-gray-700">Penerimaan Pembiayaan</h3>
+        <p class="text-xl font-bold">Rp0,00</p>
+      </div>
+      <div class="bg-gray-100 p-5 rounded-xl">
+        <h3 class="text-md font-semibold text-gray-700">Pengeluaran Pembiayaan</h3>
+        <p class="text-xl font-bold">Rp0,00</p>
+      </div>
+    </div>
+
+    <div class="text-center bg-green-200 rounded-xl p-6">
+      <h3 class="text-lg font-semibold text-green-900">Surplus / Defisit</h3>
+      <p class="text-3xl font-extrabold text-green-800 mt-2">Rp1.628.588.491,04</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#222] text-white text-center py-6 mt-10">
+    <p>© 2025 Desa Gunung Sari. All rights reserved.</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>

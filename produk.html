@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Produk - Desa Gunung Sari</title>
+  <title>Program Kerja | Desa Gunung Sari</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
@@ -14,227 +14,125 @@
     }
   </style>
 </head>
-<body class="bg-[#05221D] text-white overflow-x-hidden"></body>
+<body class="bg-[#05221D] text-white">
 
-   <!-- Navbar -->
-  <nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
-    <div class="flex items-center gap-2">
-<div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
-      <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
-    </div>
-    <!-- Beranda -->
-          <ul class="hidden md:flex gap-6 text-white font-medium">
-          <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+<!-- Navbar -->
+<nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
+  <div class="flex items-center gap-2">
+    <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+    <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
+  </div>
+  <ul class="hidden md:flex gap-6 text-white font-medium">
+    <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+    <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+    <li class="relative group">
+      <button class="hover:text-yellow-300">📊 Data Desa ▾</button>
+      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan dalam KK</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Agama</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Jenis Kelamin</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Golongan Darah</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Rentang</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Kategori</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status dalam KK</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
+      </ul>
+    </li>
+    <li><a href="programkerja.html" class="text-yellow-300">🗂️ Program Kerja</a></li>
+    <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+    <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
+  </ul>
+</nav>
 
-          <!-- Profil -->
-          <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+<!-- Spacer -->
+<div class="pt-24"></div>
 
-          <!-- Data Desa -->
-          <li class="relative group">
-            <button class="hover:text-yellow-300">📊 Data Desa ▾</button>
-            <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan dalam KK</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Agama</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Jenis Kelamin</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Golongan Darah</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Rentang</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Kategori</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status dalam KK</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
-            </ul>
-          </li>
-
-          <!-- Regulasi -->
-          <li class="relative group">
-            <button class="hover:text-yellow-300">⚖️ Regulasi ▾</button>
-            <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
-              <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
-            </ul>
-          </li>
-
-          <!-- Program Kerja -->
-          <li><a href="program kerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
-
-          <!-- Produk -->
-          <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
-
-          <!-- Kontak -->
-          <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
-
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-<!-- Header Section -->
-<header class="bg-[#327A6D] text-white text-center py-11 px-6 mt-16" data-aos="fade-down">
-  <h1 class="text-3xl sm:text-4xl font-extrabold mb-2">Produk Unggulan Desa</h1>
-  <p class="text-lg">Temukan berbagai produk berkualitas tinggi langsung dari tangan petani dan pengrajin lokal</p>
+<!-- Header -->
+<header class="bg-[#327A6D] text-white text-center py-10 px-6">
+  <h1 class="text-3xl sm:text-4xl font-extrabold mb-2">Program Kerja Desa Gunung Sari</h1>
+  <p class="text-lg">Berikut adalah daftar kegiatan dan pembangunan desa yang telah dan sedang berjalan</p>
 </header>
 
-
-  <!-- Produk Cards -->
-  <main class="py-16 px-6 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
-    
-    <!-- Produk 1 -->
-    <div class="bg-[#327A6D] rounded-lg shadow-lg overflow-hidden relative hover:shadow-2xl transition duration-300" data-aos="zoom-in">
-  <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold shadow">Diskon</div>
-  <img src="produk4.jpg" alt="Kopi Arabika Premium" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
-  <div class="p-4">
-    <h3 class="font-bold text-lg text-white">Serai Penangkal Nyamuk</h3>
-    <p class="text-sm text-white">Serai alami yang di olah untuk menjaga suasana rumah terhindar dari nyamuk</p>
-    <div class="text-sm text-yellow-300 mt-2">⭐ 4.8 • 150 terjual</div>
-    <div class="flex items-baseline gap-2 mt-2">
-      <span class="text-green-200 font-bold text-lg">Rp 15.000</span>
-      <span class="line-through text-gray-200 text-sm">Rp 25.000</span>
-    </div>
-    <div class="mt-4 flex justify-center gap-2">
-      <a href="#" class="bg-orange-500 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-orange-600 transition">
-        <i class="fab fa-shopify"></i> Shopee
-      </a>
-      <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" class="bg-black text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-gray-800 transition">
-        <i class="fab fa-tiktok"></i> TikTok
-        <!-- Tombol WhatsApp -->
-      <a href="https://wa.me/62881026548609" target="_blank" class="bg-green-600 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-green-700 transition">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-      </a>
-    </div>
-  </div>
-</div>
-
-    <!-- Produk 2 -->
-    <div class="bg-[#327A6D] rounded-lg shadow-lg overflow-hidden relative hover:shadow-2xl transition duration-300" data-aos="zoom-in">
-  <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold shadow">Diskon</div>
-  <img src="produk2.jpg" alt="Kopi Arabika Premium" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
-  <div class="p-4">
-    <h3 class="font-bold text-lg text-white">Jamu Serai</h3>
-    <p class="text-sm text-white">Olahan serai putih yang bermanfaat untuk kebugaran tubuh</p>
-    <div class="text-sm text-yellow-300 mt-2">⭐ 4.8 • 150 terjual</div>
-    <div class="flex items-baseline gap-2 mt-2">
-      <span class="text-green-200 font-bold text-lg">Rp 10.000</span>
-      <span class="line-through text-gray-200 text-sm">Rp 15.000</span>
-    </div>
-    <div class="mt-4 flex justify-center gap-2">
-      <a href="#" class="bg-orange-500 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-orange-600 transition">
-        <i class="fab fa-shopify"></i> Shopee
-      </a>
-      <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" class="bg-black text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-gray-800 transition">
-        <i class="fab fa-tiktok"></i> TikTok
-        <!-- Tombol WhatsApp -->
-      <a href="https://wa.me/62881026548609" target="_blank" class="bg-green-600 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-green-700 transition">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-      </a>
-    </div>
-  </div>
-</div>
-
-    <!-- Produk 3 -->
-    <div class="bg-[#327A6D] rounded-lg shadow-lg overflow-hidden relative hover:shadow-2xl transition duration-300" data-aos="zoom-in">
-  <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold shadow">Diskon</div>
-  <img src="produk3.jpg" alt="Kopi Arabika Premium" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
-  <div class="p-4">
-    <h3 class="font-bold text-lg text-white">Abon Lele</h3>
-    <p class="text-sm text-white">Penambah rasa dalam setiap makanan yang mengandung banyak gizi</p>
-    <div class="text-sm text-yellow-300 mt-2">⭐ 4.8 • 150 terjual</div>
-    <div class="flex items-baseline gap-2 mt-2">
-      <span class="text-green-200 font-bold text-lg">Rp 25.000</span>
-      <span class="line-through text-gray-200 text-sm">Rp 35.000</span>
-    </div>
-    <div class="mt-4 flex justify-center gap-2">
-      <a href="#" class="bg-orange-500 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-orange-600 transition">
-        <i class="fab fa-shopify"></i> Shopee
-      </a>
-      <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" class="bg-black text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-gray-800 transition">
-        <i class="fab fa-tiktok"></i> TikTok
-        <!-- Tombol WhatsApp -->
-      <a href="https://wa.me/62881026548609" target="_blank" class="bg-green-600 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-green-700 transition">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-      </a>
-    </div>
-  </div>
-</div>
-    <!-- Produk 4 -->
-    <div class="bg-[#327A6D]  rounded-lg shadow-lg overflow-hidden relative hover:shadow-2xl transition duration-300" data-aos="zoom-in" data-aos-delay="200">
-      <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold shadow">Diskon</div>
-      <img src="produk1.jpg" alt="Keripik Singkong" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
-      <div class="p-4">
-        <h3 class="font-bold text-lg">Nata D'Siwalan</h3>
-        <p class="text-sm text-white">Siwalan khas desa Gunungsari untuk menemani momen bersama keluarga</p>
-        <div class="text-sm text-yellow-500 mt-2">⭐ 4.7 • 320 terjual</div>
-        <div class="flex items-baseline gap-2 mt-2">
-          <span class="text-green-00 font-bold text-lg">Rp 20.000</span>
-          <span class="line-through text-gray-400 text-sm">Rp 30.000</span>
+<!-- Konten Program Kerja -->
+<main class="py-16 px-6 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <!-- Kartu 1 -->
+  <div class="bg-[#327A6D] rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in">
+    <img src="https://i.imgur.com/abUeUHE.jpg" alt="Musyawarah" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="font-bold text-lg">Musyawarah Desa Tamang untuk RPJMDes Perubahan 2025–2027</h3>
+      <p class="text-sm">Musyawarah Desa Tamang dalam Rangka Penyusunan RPJMDes Perubahan 2025–2027 Pemerintah Desa Tamang, Kecamatan Nanga Mahap...</p>
+      <div class="flex justify-between items-center text-sm text-gray-200 mt-4">
+        <div>
+          <i class="fa fa-user mr-1"></i> Administrator<br>
+          <i class="fa fa-eye mr-1"></i> Dilihat 13 kali
         </div>
-        <div class="mt-4 flex justify-center gap-2">
-          <a href="#" class="bg-orange-500 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-orange-600 transition">
-            <i class="fab fa-shopify"></i> Shopee
-          </a>
-        <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" class="bg-black text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-gray-800 transition">
-        <i class="fab fa-tiktok"></i> TikTok
-        <!-- Tombol WhatsApp -->
-      <a href="https://wa.me/62881026548609" target="_blank" class="bg-green-600 text-white px-2 py-1 rounded flex items-center gap-1 text-xs hover:bg-green-700 transition">
-        <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
-          </a>
-        </div>
+        <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded font-semibold">23 Jul 2025</div>
       </div>
     </div>
-
-  </main>
-
-  <!-- Ajakan Aksi -->
-<section class="bg-[#327A6D] text-white text-center py-12 px-6" data-aos="fade-up">
-  <h2 class="text-2xl font-extrabold text-white mb-4">Bergabung dan Dukung Produk Lokal!</h2>
-  <p class="text-white text-lg mb-6 max-w-2xl mx-auto">
-    Dengan membeli produk dari Desa Gunung Sari, Anda turut membantu meningkatkan kesejahteraan petani dan pengrajin lokal.
-  </p>
-  <div class="flex justify-center gap-4 flex-wrap">
-    <a href="https://shopee.co.id/gunungsari" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 shadow">
-      🛍️ Kunjungi Shopee
-    </a>
-    <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" target="_blank" class="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 shadow">
-      🎵 TikTok Shop
-    </a>
   </div>
-</section>
 
-
-
-  <!-- Footer -->
-  <footer id="kontak" class=" text-white py-10 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
-      <div>
-        <h4 class="text-lg font-bold mb-2">Desa Gunung Sari</h4>
-        <p class="text-sm">Jl. Raya Gunung Sari No. 123<br/>+62 343-653-0883</p>
-      </div>
-      <div>
-        <h4 class="text-lg font-bold mb-2">Tautan</h4>
-        <ul class="text-sm space-y-1">
-          <li><a href="index.html" class="hover:underline">Beranda</a></li>
-          <li><a href="profil.html" class="hover:underline">Profil</a></li>
-          <li><a href="produk.html" class="hover:underline">Produk</a></li>
-        </ul>
+  <!-- Kartu 2 -->
+  <div class="bg-[#327A6D] rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in">
+    <img src="https://via.placeholder.com/400x300.png?text=Rabat+Beton" alt="Rabat Beton" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="font-bold text-lg">Peningkatan Aksesibilitas di Desa Tamang: Pembangunan Jalan Rabat...</h3>
+      <p class="text-sm">Pembangunan infrastruktur merupakan pondasi penting bagi kemajuan suatu desa. Aksesibilitas yang baik mendorong pertumbuhan ekonomi...</p>
+      <div class="flex justify-between items-center text-sm text-gray-200 mt-4">
+        <div>
+          <i class="fa fa-user mr-1"></i> Administrator<br>
+          <i class="fa fa-eye mr-1"></i> Dilihat 18 kali
+        </div>
+        <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded font-semibold">22 Jul 2025</div>
       </div>
     </div>
-    <div class="text-center text-sm text-gray-400 mt-6">
-      &copy; 2025 Desa Gunung Sari. Semua hak dilindungi.
-    </div>
-  </footer>
+  </div>
 
-  <!-- AOS Script -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
-  </script>
+  <!-- Kartu 3 -->
+  <div class="bg-[#327A6D] rounded-lg shadow-lg overflow-hidden" data-aos="zoom-in">
+    <img src="https://via.placeholder.com/400x300.png?text=Jalan+Rabat" alt="Pembangunan Jalan" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h3 class="font-bold text-lg">Pembangunan Jalan Rabat Beton di Desa Tamang, Kecamatan Nanga Mahap,...</h3>
+      <p class="text-sm">Pembangunan infrastruktur merupakan kunci penting dalam meningkatkan kualitas hidup masyarakat desa. Aksesibilitas yang baik mendorong...</p>
+      <div class="flex justify-between items-center text-sm text-gray-200 mt-4">
+        <div>
+          <i class="fa fa-user mr-1"></i> Administrator<br>
+          <i class="fa fa-eye mr-1"></i> Dilihat 14 kali
+        </div>
+        <div class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded font-semibold">22 Jul 2025</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#327A6D] text-white py-10 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+    <div>
+      <h4 class="text-lg font-bold mb-2">Desa Gunung Sari</h4>
+      <p class="text-sm">Jl. Raya Gunung Sari No. 123<br/>+62 343-653-0883</p>
+    </div>
+    <div>
+      <h4 class="text-lg font-bold mb-2">Tautan</h4>
+      <ul class="text-sm space-y-1">
+        <li><a href="index.html" class="hover:underline">Beranda</a></li>
+        <li><a href="profil.html" class="hover:underline">Profil</a></li>
+        <li><a href="produk.html" class="hover:underline">Produk</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center text-sm text-gray-300 mt-6">
+    &copy; 2025 Desa Gunung Sari. Semua hak dilindungi.
+  </div>
+</footer>
+
+<!-- AOS Script -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+</script>
 </body>
 </html>
