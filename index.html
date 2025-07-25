@@ -33,16 +33,11 @@
     <button id="mobile-menu-button" class="md:hidden text-white transition-transform duration-300">
       <i class="fas fa-bars fa-lg"></i>
     </button>
-
-    
           <!-- Beranda -->
           <ul class="hidden md:flex gap-6 text-white font-medium">
-          <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
-
+          <li><a href="index.html" class="text-yellow-300 hover:text-yellow-300">🏠 Beranda</a></li>
        <!-- Profil -->
           <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
-
-
           <!-- Data Desa -->
 <li class="relative group">
   <a href="datadesa.html" class="hover:text-yellow-300">📊 Data Desa ▾</a>
@@ -58,10 +53,8 @@
     <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
   </ul>
 </li>
-      
     <!-- dana desa -->
           <li><a href="danadesa.html" class="hover:text-yellow-300">💰 Dana Desa</a></li>
-
           <!-- Regulasi -->
           <li class="relative group">
             <button class="hover:text-yellow-300">⚖️ Regulasi ▾</button>
@@ -72,16 +65,12 @@
               <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
             </ul>
           </li>
-
           <!-- Program Kerja -->
           <li><a href="programkerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
-
           <!-- Produk -->
           <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
-
           <!-- Kontak -->
           <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
-
         </ul>
       </div>
     </div>
@@ -168,19 +157,27 @@
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-[#327A6D] text-white py-10 px-6">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <div class="bg-green-600 w-8 h-8 flex items-center justify-center font-bold rounded">GS</div>
-          <span class="text-lg font-semibold">Desa Gunungsari</span>
-        </div>
-        <p class="text-sm">Desa dengan potensi alam, budaya, dan usaha mikro yang terus berkembang.</p>
+  <!-- Footer: FIX Background rata penuh -->
+<footer class="w-full bg-[#327A6D] text-white">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-8">
+    
+    <!-- Kolom Kiri -->
+    <div class="flex-1">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="bg-white text-[#327A6D] w-10 h-10 flex items-center justify-center font-bold rounded-full text-lg">GS</div>
+        <span class="text-xl font-semibold">Desa Gunungsari</span>
       </div>
+      <p class="text-sm leading-relaxed">
+        Desa Gunungsari merupakan wilayah yang kaya akan potensi alam, budaya, dan UMKM. Komitmen kami adalah membangun desa yang mandiri dan berdaya saing.
+      </p>
+    </div>
+
+    <!-- Kolom Kanan -->
+    <div class="flex-1 grid grid-cols-2 gap-6 text-center">
       <div>
         <h4 class="font-bold mb-2">Kontak</h4>
-        <p class="text-sm">📍Jln.Banyulegi RT.14 RW.05 Gunungsari, Kec.Beji, Pasuruan Jawa Timur 67154</p>
+        <p class="text-sm">📍 Jln. Banyulegi RT.14 RW.05 Gunungsari</p>
+        <p class="text-sm">✉️ Kantordesagunungsari02@gmail.com</p>
         <p class="text-sm">📞 +62 343-653-0883</p>
       </div>
       <div>
@@ -192,8 +189,13 @@
         </ul>
       </div>
     </div>
-    <div class="mt-6 text-center text-gray-400 text-sm">&copy; 2025 Desa Gunungsari. Semua hak dilindungi.</div>
-  </footer>
+  </div>
+
+  <!-- Copyright -->
+  <div class="text-center text-sm text-white py-6">
+    &copy; 2025 Desa Gunungsari. Semua hak dilindungi.
+  </div>
+</footer>
 
   <!-- Script Toggle Menu -->
   <script>
