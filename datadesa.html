@@ -1,246 +1,487 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Data Demografi 3D</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Demografi Desa Gunungsari</title>
 
-  <!-- Highcharts -->
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-  <!-- Google Charts -->
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <!-- TailwindCSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Font Awesome -->
-  <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha2d-p4NxNvVzYtTSVvA5zN4qYxV6wB7+y5p9sS7xP4+v8yQp" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha2d-X0D9RkP9xMhN6XwG9xV5p9sS7xP4+v8yQp" crossorigin=""></script>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #05221D;
+            color: white;
+            /* padding-top akan diatur oleh JS agar dinamis sesuai tinggi navbar */
+        }
 
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #05221D;
-      color: white;
-      padding-top: 100px;
-    }
+        h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    h2, h3 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+        .chart-container {
+            margin-bottom: 60px;
+        }
 
-    .chart-container {
-      margin-bottom: 60px;
-    }
-  </style>
+        /* Gaya tambahan untuk dropdown mobile */
+        .mobile-dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-dropdown-content.active {
+            max-height: 500px; /* Cukup besar untuk menampung semua item */
+            transition: max-height 0.5s ease-in;
+        }
+
+        /* Pastikan peta mengisi container-nya */
+        #map-container {
+            /* Hapus teks placeholder setelah peta dimuat */
+            color: transparent; 
+        }
+        #map-container .leaflet-pane {
+            /* Pastikan komponen Leaflet terlihat */
+            color: initial; 
+        }
+    </style>
 </head>
 <body class="text-white bg-[#05221D]">
 
-<!-- ======= Navbar ======= -->
 <nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
-  <div class="flex items-center gap-2">
-    <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
-    <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
-  </div>
+    <div class="flex items-center gap-2">
+        <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+        <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
+    </div>
 
-  <!-- Hamburger (Mobile) -->
-  <button id="mobile-menu-button" class="md:hidden text-white">
-    <i class="fas fa-bars fa-lg"></i>
-  </button>
+    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <i class="fas fa-bars fa-lg"></i>
+    </button>
 
-  <!-- Menu Desktop -->
-  <ul class="hidden md:flex gap-6 text-white font-medium">
+    <ul class="hidden md:flex gap-6 text-white font-medium">
+        <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+        <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+ <li><a href="datadesa.html" class="text-yellow-300 hover:text-yellow-300">📊 Data Desa</a></li>
+        <li><a href="danadesa.html" class="hover:text-yellow-300">💰 Dana Desa</a></li>
+
+        <li class="relative group">
+            <button class="hover:text-yellow-300">⚖️ Regulasi <i class="fas fa-caret-down text-xs ml-1"></i></button>
+            <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
+            </ul>
+        </li>
+
+        <li><a href="programkerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
+        <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+        <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
+    </ul>
+</nav>
+
+<ul id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#05221D] text-white text-center gap-4 py-4 shadow transition-all duration-300 ease-in-out">
     <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
     <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
 
-    <li class="relative group">
-      <a href="datadesa.html" class="text-yellow-300 hover:text-yellow-300">📊 Data Desa ▾</a>
-      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan dalam KK</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Agama</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Jenis Kelamin</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Golongan Darah</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Rentang</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Kelompok Umur - Kategori</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status dalam KK</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Status Perkawinan</a></li>
-      </ul>
+    <li class="relative">
+        <button class="w-full text-center hover:text-yellow-300 py-2 mobile-dropdown-toggle" data-target="data-desa-mobile-menu">📊 Data Desa <i class="fas fa-caret-down text-xs ml-1"></i></button>
+        <ul id="data-desa-mobile-menu" class="mobile-dropdown-content bg-[#05221D] text-white text-sm">
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Pendidikan dalam KK</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Pekerjaan</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Agama</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Jenis Kelamin</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Golongan Darah</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Kelompok Umur - Rentang</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Data Kelompok Umur - Kategori</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Status dalam KK</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Status Perkawinan</a></li>
+        </ul>
     </li>
 
     <li><a href="danadesa.html" class="hover:text-yellow-300">💰 Dana Desa</a></li>
 
-    <li class="relative group">
-      <button class="hover:text-yellow-300">⚖️ Regulasi ▾</button>
-      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
-        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
-      </ul>
+    <li class="relative">
+        <button class="w-full text-center hover:text-yellow-300 py-2 mobile-dropdown-toggle" data-target="regulasi-mobile-menu">⚖️ Regulasi <i class="fas fa-caret-down text-xs ml-1"></i></button>
+        <ul id="regulasi-mobile-menu" class="mobile-dropdown-content bg-[#05221D] text-white text-sm">
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Peraturan Desa</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Keputusan Kepala Desa</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Peraturan BPD</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-700">Informasi Publik</a></li>
+        </ul>
     </li>
 
     <li><a href="programkerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
     <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
     <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
-  </ul>
-</nav>
-
-<!-- ======= Menu Mobile ======= -->
-<ul id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#05221D] text-white text-center gap-4 py-4 mt-[72px] shadow transition-all duration-300 ease-in-out">
-  <li><a href="index.html" class="text-green-400 font-semibold">🏠 Beranda</a></li>
-  <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
-  <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
-  <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
 </ul>
 
-<!-- ======= Konten Diagram ======= -->
-<main class="px-6 max-w-5xl mx-auto">
-  <h2>📊 Diagram Kolom Pekerjaan Penduduk (3D)</h2>
-  <div id="columnChart3d" class="chart-container" style="height: 400px;"></div>
 
-  <h2>📊 Diagram Batang Stacked (Pria & Wanita) 3D</h2>
-  <div id="stackedBarChart3d" class="chart-container" style="height: 400px;"></div>
+<main class="px-6 max-w-5xl mx-auto min-h-screen" id="main-content-area">
+    <h1 class="text-3xl font-bold text-center mb-8 mt-10">Data Demografi Desa Gunungsari</h1>
 
-  <h2>📊 Diagram Pie 3D Data Agama Penduduk</h2>
-  <div id="piechart3d" class="chart-container" style="height: 400px;"></div>
+    <div class="mb-8 text-center">
+        <label for="tahun-filter" class="mr-2 text-lg">Pilih Tahun Data:</label>
+        <select id="tahun-filter" class="bg-gray-700 text-white p-2 rounded">
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+        </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="bg-[#327A6D] p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold mb-2">Total Penduduk</h3>
+            <p class="text-4xl font-bold" id="total-penduduk">2,300</p>
+        </div>
+        <div class="bg-[#327A6D] p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold mb-2">Jumlah KK</h3>
+            <p class="text-4xl font-bold" id="jumlah-kk">650</p>
+        </div>
+        <div class="bg-[#327A6D] p-6 rounded-lg shadow-lg text-center">
+            <h3 class="text-xl font-semibold mb-2">Usia Produktif</h3>
+            <p class="text-4xl font-bold" id="usia-produktif">65%</p>
+        </div>
+    </div>
+
+
+    <h2>📊 Diagram Kolom Pekerjaan Penduduk (3D)</h2>
+    <div id="columnChart3d" class="chart-container" style="height: 400px;"></div>
+
+    <h2>📊 Diagram Batang Stacked (Pria & Wanita) 3D</h2>
+    <div id="stackedBarChart3d" class="chart-container" style="height: 400px;"></div>
+
+    <h2>📊 Diagram Pie 3D Data Agama Penduduk</h2>
+    <div id="piechart3d" class="chart-container" style="height: 400px;"></div>
+
+    <h2 class="mt-12 mb-4">Tabel Detail Data Pekerjaan</h2>
+    <div class="overflow-x-auto mb-12">
+        <table class="w-full text-left table-auto border-collapse border border-gray-700">
+            <thead>
+                <tr class="bg-gray-700">
+                    <th class="px-4 py-2 border-b border-gray-600">Pekerjaan</th>
+                    <th class="px-4 py-2 border-b border-gray-600 text-right">Total</th>
+                    <th class="px-4 py-2 border-b border-gray-600 text-right">Pria</th>
+                    <th class="px-4 py-2 border-b border-gray-600 text-right">Wanita</th>
+                </tr>
+            </thead>
+            <tbody id="data-pekerjaan-table">
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="mt-12">🗺️ Peta Interaktif Desa Gunungsari</h2>
+    <div id="map-container" class="chart-container bg-gray-700 flex items-center justify-center text-gray-400" style="height: 500px; border-radius: 8px;">
+        <p>Memuat Peta...</p>
+    </div>
+
 </main>
 
-<!-- ======= Highcharts JS ======= -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const labels = [
-      'BELUM/TIDAK BEKERJA', 'MENGURUS RUMAH TANGGA', 'PELAJAR/MAHASISWA',
-      'PETANI/PEKEBUN', 'BURUH TANI/PERKEBUNAN', 'KARYAWAN SWASTA',
-      'WIRASWASTA', 'GURU', 'PNS', 'PEDAGANG'
-    ];
-
-    const totalData = [320, 280, 245, 190, 160, 150, 140, 120, 110, 95];
-    const dataPria = [180, 40, 130, 140, 110, 100, 90, 60, 70, 60];
-    const dataWanita = totalData.map((t, i) => t - dataPria[i]);
-
-    Highcharts.chart('columnChart3d', {
-      chart: { type: 'column', options3d: { enabled: true, alpha: 10, beta: 10, depth: 70 }, backgroundColor: '#05221D' },
-      title: { text: 'Distribusi Pekerjaan Penduduk', style: { color: '#ffffff' } },
-      xAxis: { categories: labels, labels: { style: { color: '#ffffff' } } },
-      yAxis: {
-        title: { text: 'Jumlah Penduduk', style: { color: '#ffffff' }, y: -15 },
-        labels: { style: { color: '#ffffff' } }
-      },
-      plotOptions: { column: { depth: 30 } },
-      series: [{ name: 'Jumlah Total', data: totalData, color: 'orange' }],
-      legend: { itemStyle: { color: '#ffffff' } }
-    });
-
-    Highcharts.chart('stackedBarChart3d', {
-      chart: { type: 'bar', options3d: { enabled: true, alpha: 15, beta: 15, depth: 50 }, backgroundColor: '#05221D' },
-      title: { text: 'Distribusi Pekerjaan per Jenis Kelamin', style: { color: '#ffffff' } },
-      xAxis: { categories: labels, labels: { style: { color: '#ffffff' } } },
-      yAxis: {
-        title: { text: 'Jumlah Penduduk', style: { color: '#ffffff' }, y: -15 },
-        labels: { style: { color: '#ffffff' } }
-      },
-      plotOptions: { series: { stacking: 'normal', depth: 25 } },
-      series: [
-        { name: 'Pria', data: dataPria, color: '#36A2EB' },
-        { name: 'Wanita', data: dataWanita, color: '#FF6384' }
-      ],
-      legend: { itemStyle: { color: '#ffffff' } }
-    });
-  });
-</script>
-
-<!-- ======= Google Charts Pie 3D ======= -->
-<script type="text/javascript">
-  google.charts.load("current", { packages: ["corechart"] });
-  google.charts.setOnLoadCallback(drawChart);
-
-  function drawChart() {
-    const data = google.visualization.arrayToDataTable([
-      ['Agama', 'Jumlah'],
-      ['Islam', 1780],
-      ['Kristen', 90],
-      ['Katholik', 45],
-      ['Hindu', 15],
-      ['Buddha', 10],
-      ['Khonghucu', 5],
-      ['Kepercayaan Lainnya', 3],
-      ['Tidak Mengisi', 7]
-    ]);
-
-    const options = {
-      title: 'Distribusi Penduduk Berdasarkan Agama',
-      is3D: true,
-      backgroundColor: '#111111',
-      titleTextStyle: { color: '#ffffff', fontSize: 18, bold: true },
-      legend: { textStyle: { color: '#ffffff' }, position: 'right' },
-      chartArea: { width: '85%', height: '80%' }
-    };
-
-    const chart = new google.visualization.PieChart(document.getElementById('piechart3d'));
-    chart.draw(data, options);
-  }
-</script>
-
-<!-- Ajakan Aksi -->
 <section class="bg-[#05221D] text-white text-center py-12 px-6" data-aos="fade-up">
-  <h2 class="text-2xl font-extrabold text-white mb-4">Bergabung dan Dukung Produk Lokal!</h2>
-  <p class="text-white text-lg mb-6 max-w-2xl mx-auto">
-    Dengan membeli produk dari Desa Gunung Sari, Anda turut membantu meningkatkan kesejahteraan petani dan pengrajin lokal.
-  </p>
-  <div class="flex justify-center gap-4 flex-wrap">
-    <a href="https://shopee.co.id/gunungsari" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 shadow">
-      🛍️ Kunjungi Shopee
-    </a>
-    <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" target="_blank" class="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 shadow">
-      🎵 TikTok Shop
-    </a>
-  </div>
+    <h2 class="text-2xl font-extrabold text-white mb-4">Bergabung dan Dukung Produk Lokal!</h2>
+    <p class="text-white text-lg mb-6 max-w-2xl mx-auto">
+        Dengan membeli produk dari Desa Gunung Sari, Anda turut membantu meningkatkan kesejahteraan petani dan pengrajin lokal.
+    </p>
+    <div class="flex justify-center gap-4 flex-wrap">
+        <a href="https://shopee.co.id/gunungsari" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 shadow">
+            🛍️ Kunjungi Shopee
+        </a>
+        <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" target="_blank" class="bg-black hover:bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 shadow">
+            🎵 TikTok Shop
+        </a>
+    </div>
 </section>
 
-
-
-<!-- Footer: FIX Background rata penuh -->
 <footer class="w-full bg-[#327A6D] text-white">
-  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-8">
-    
-    <!-- Kolom Kiri -->
-    <div class="flex-1">
-      <div class="flex items-center gap-3 mb-3">
-        <div class="bg-white text-[#327A6D] w-10 h-10 flex items-center justify-center font-bold rounded-full text-lg">GS</div>
-        <span class="text-xl font-semibold">Desa Gunungsari</span>
-      </div>
-      <p class="text-sm leading-relaxed">
-        Desa Gunungsari merupakan wilayah yang kaya akan potensi alam, budaya, dan UMKM. Komitmen kami adalah membangun desa yang mandiri dan berdaya saing.
-      </p>
+    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-8">
+
+        <div class="flex-1">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="bg-white text-[#327A6D] w-10 h-10 flex items-center justify-center font-bold rounded-full text-lg">GS</div>
+                <span class="text-xl font-semibold">Desa Gunungsari</span>
+            </div>
+            <p class="text-sm leading-relaxed">
+                Desa Gunungsari merupakan wilayah yang kaya akan potensi alam, budaya, dan UMKM. Komitmen kami adalah membangun desa yang mandiri dan berdaya saing.
+            </p>
+        </div>
+
+        <div class="flex-1 grid grid-cols-2 gap-6 text-center">
+            <div>
+                <h4 class="font-bold mb-2">Kontak</h4>
+                <p class="text-sm">📍 Jln. Banyulegi RT.14 RW.05 Gunungsari</p>
+                <p class="text-sm">✉️ Kantordesagunungsari02@gmail.com</p>
+                <p class="text-sm">📞 +62 343-653-0883</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-2">Tautan</h4>
+                <ul class="text-sm space-y-1">
+                    <li><a href="profil.html" class="hover:underline">Profil Desa</a></li>
+                    <li><a href="#" class="hover:underline">Layanan Publik</a></li>
+                    <li><a href="produk.html" class="hover:underline">Produk UMKM</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <!-- Kolom Kanan -->
-    <div class="flex-1 grid grid-cols-2 gap-6 text-center">
-      <div>
-        <h4 class="font-bold mb-2">Kontak</h4>
-        <p class="text-sm">📍 Jln. Banyulegi RT.14 RW.05 Gunungsari</p>
-        <p class="text-sm">✉️ Kantordesagunungsari02@gmail.com</p>
-        <p class="text-sm">📞 +62 343-653-0883</p>
-      </div>
-      <div>
-        <h4 class="font-bold mb-2">Tautan</h4>
-        <ul class="text-sm space-y-1">
-          <li><a href="profil.html" class="hover:underline">Profil Desa</a></li>
-          <li><a href="#" class="hover:underline">Layanan Publik</a></li>
-          <li><a href="produk.html" class="hover:underline">Produk UMKM</a></li>
-        </ul>
-      </div>
+    <div class="text-center text-sm text-white py-6 space-y-1">
+        <div>&copy; 2025 Desa Gunungsari. All Rights Reserved</div>
+        <div>Designed by siska</div>
     </div>
-  </div>
-
-  <!-- Copyright -->
-  <div class="text-center text-sm text-white py-6 space-y-1">
-    <div>&copy; 2025 Desa Gunungsari. All Rights Reserved</div>
-    <div>Designed by siska</div>
-  </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector('nav');
+        const mainContent = document.getElementById('main-content-area');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+
+        // --- Fungsi untuk menyesuaikan padding main content ---
+        const adjustMainContentPadding = () => {
+            if (navbar && mainContent) {
+                // Tambahkan sedikit ruang ekstra di bawah navbar
+                mainContent.style.paddingTop = navbar.offsetHeight + 30 + 'px'; 
+            }
+        };
+
+        // Panggil saat DOMContentLoaded dan saat jendela diubah ukurannya
+        adjustMainContentPadding();
+        window.addEventListener('resize', adjustMainContentPadding);
+
+        // --- Fungsi untuk mengelola menu mobile ---
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                // Atur ulang padding saat menu mobile dibuka/ditutup (opsional, tergantung desain)
+                setTimeout(adjustMainContentPadding, 300); // Beri sedikit delay agar transisi selesai
+            });
+        }
+
+        // --- Fungsi untuk mengelola dropdown mobile ---
+        mobileDropdownToggles.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.dataset.target;
+                const targetMenu = document.getElementById(targetId);
+                if (targetMenu) {
+                    targetMenu.classList.toggle('active');
+                }
+            });
+        });
+
+        // --- Data untuk Diagram dan Tabel (Bisa disesuaikan per tahun) ---
+        const dataDemografi = {
+            '2024': {
+                labels: [
+                    'BELUM/TIDAK BEKERJA', 'MENGURUS RUMAH TANGGA', 'PELAJAR/MAHASISWA',
+                    'PETANI/PEKEBUN', 'BURUH TANI/PERKEBUNAN', 'KARYAWAN SWASTA',
+                    'WIRASWASTA', 'GURU', 'PNS', 'PEDAGANG'
+                ],
+                totalData: [320, 280, 245, 190, 160, 150, 140, 120, 110, 95],
+                dataPria: [180, 40, 130, 140, 110, 100, 90, 60, 70, 60],
+                agamaData: [
+                    ['Islam', 1780], ['Kristen', 90], ['Katholik', 45],
+                    ['Hindu', 15], ['Buddha', 10], ['Khonghucu', 5],
+                    ['Kepercayaan Lainnya', 3], ['Tidak Mengisi', 7]
+                ],
+                summary: {
+                    totalPenduduk: '2,300',
+                    jumlahKK: '650',
+                    usiaProduktif: '65%'
+                }
+            },
+            '2023': {
+                labels: [
+                    'BELUM/TIDAK BEKERJA', 'MENGURUS RUMAH TANGGA', 'PELAJAR/MAHASISWA',
+                    'PETANI/PEKEBUN', 'BURUH TANI/PERKEBUNAN', 'KARYAWAN SWASTA',
+                    'WIRASWASTA', 'GURU', 'PNS', 'PEDAGANG'
+                ],
+                totalData: [290, 260, 230, 180, 150, 140, 130, 110, 100, 90],
+                dataPria: [170, 35, 120, 130, 100, 95, 85, 55, 65, 55],
+                agamaData: [
+                    ['Islam', 1750], ['Kristen', 85], ['Katholik', 40],
+                    ['Hindu', 14], ['Buddha', 9], ['Khonghucu', 4],
+                    ['Kepercayaan Lainnya', 2], ['Tidak Mengisi', 6]
+                ],
+                summary: {
+                    totalPenduduk: '2,250',
+                    jumlahKK: '630',
+                    usiaProduktif: '63%'
+                }
+            },
+            '2022': {
+                labels: [
+                    'BELUM/TIDAK BEKERJA', 'MENGURUS RUMAH TANGGA', 'PELAJAR/MAHASISWA',
+                    'PETANI/PEKEBUN', 'BURUH TANI/PERKEBUNAN', 'KARYAWAN SWASTA',
+                    'WIRASWASTA', 'GURU', 'PNS', 'PEDAGANG'
+                ],
+                totalData: [270, 240, 210, 170, 140, 130, 120, 100, 90, 80],
+                dataPria: [160, 30, 110, 120, 90, 85, 80, 50, 60, 50],
+                agamaData: [
+                    ['Islam', 1700], ['Kristen', 80], ['Katholik', 35],
+                    ['Hindu', 13], ['Buddha', 8], ['Khonghucu', 3],
+                    ['Kepercayaan Lainnya', 1], ['Tidak Mengisi', 5]
+                ],
+                summary: {
+                    totalPenduduk: '2,150',
+                    jumlahKK: '600',
+                    usiaProduktif: '60%'
+                }
+            }
+        };
+
+        const tahunFilter = document.getElementById('tahun-filter');
+
+        // --- Fungsi untuk menggambar semua chart dan memperbarui tabel & ringkasan ---
+        function renderChartsAndData(year) {
+            const currentData = dataDemografi[year];
+            if (!currentData) {
+                console.error("Data for year " + year + " not found.");
+                return;
+            }
+
+            const { labels, totalData, dataPria, agamaData, summary } = currentData;
+            const dataWanita = totalData.map((t, i) => t - dataPria[i]);
+
+            // Update Summary Info
+            document.getElementById('total-penduduk').innerText = summary.totalPenduduk;
+            document.getElementById('jumlah-kk').innerText = summary.jumlahKK;
+            document.getElementById('usia-produktif').innerText = summary.usiaProduktif;
+
+
+            // Highcharts Kolom 3D
+            Highcharts.chart('columnChart3d', {
+                chart: { 
+                    type: 'column', 
+                    options3d: { enabled: true, alpha: 10, beta: 10, depth: 70 }, 
+                    backgroundColor: '#05221D', // Konsisten dengan body
+                    style: { fontFamily: 'sans-serif' } // Pastikan font juga konsisten
+                },
+                title: { text: 'Distribusi Pekerjaan Penduduk Tahun ' + year, style: { color: '#ffffff' } },
+                xAxis: { categories: labels, labels: { style: { color: '#ffffff' } }, lineColor: '#666666', tickColor: '#666666' },
+                yAxis: {
+                    title: { text: 'Jumlah Penduduk', style: { color: '#ffffff' }, y: -15 },
+                    labels: { style: { color: '#ffffff' } },
+                    gridLineColor: '#333333'
+                },
+                plotOptions: { column: { depth: 30 } },
+                series: [{ name: 'Jumlah Total', data: totalData, color: '#FDBA74' }], // Warna orange Tailwind
+                legend: { itemStyle: { color: '#ffffff' } },
+                credits: { enabled: false } // Sembunyikan watermark Highcharts
+            });
+
+            // Highcharts Batang Stacked 3D
+            Highcharts.chart('stackedBarChart3d', {
+                chart: { 
+                    type: 'bar', 
+                    options3d: { enabled: true, alpha: 15, beta: 15, depth: 50 }, 
+                    backgroundColor: '#05221D', // Konsisten dengan body
+                    style: { fontFamily: 'sans-serif' }
+                },
+                title: { text: 'Distribusi Pekerjaan per Jenis Kelamin Tahun ' + year, style: { color: '#ffffff' } },
+                xAxis: { categories: labels, labels: { style: { color: '#ffffff' } }, lineColor: '#666666', tickColor: '#666666' },
+                yAxis: {
+                    title: { text: 'Jumlah Penduduk', style: { color: '#ffffff' }, y: -15 },
+                    labels: { style: { color: '#ffffff' } },
+                    gridLineColor: '#333333'
+                },
+                plotOptions: { series: { stacking: 'normal', depth: 25 } },
+                series: [
+                    { name: 'Pria', data: dataPria, color: '#3B82F6' }, // Warna biru Tailwind
+                    { name: 'Wanita', data: dataWanita, color: '#EC4899' } // Warna pink Tailwind
+                ],
+                legend: { itemStyle: { color: '#ffffff' } },
+                credits: { enabled: false }
+            });
+
+            // Google Charts Pie 3D Data Agama
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(() => {
+                const googleData = google.visualization.arrayToDataTable([
+                    ['Agama', 'Jumlah'],
+                    ...agamaData
+                ]);
+
+                const options = {
+                    title: 'Distribusi Penduduk Berdasarkan Agama Tahun ' + year,
+                    is3D: true,
+                    backgroundColor: '#05221D', // Disamakan dengan body dan Highcharts
+                    titleTextStyle: { color: '#ffffff', fontSize: 18, bold: true },
+                    legend: { textStyle: { color: '#ffffff' }, position: 'right' },
+                    chartArea: { width: '85%', height: '80%' },
+                    // Warna slice dapat disesuaikan di sini jika diinginkan
+                    colors: ['#2ECC71', '#3498DB', '#9B59B6', '#E67E22', '#F1C40F', '#1ABC9C', '#C0392B', '#7F8C8D'] 
+                };
+
+                const chart = new google.visualization.PieChart(document.getElementById('piechart3d'));
+                chart.draw(googleData, options);
+            });
+
+            // Update Tabel Pekerjaan
+            const tableBody = document.getElementById('data-pekerjaan-table');
+            tableBody.innerHTML = ''; // Kosongkan tabel sebelum diisi
+            labels.forEach((job, index) => {
+                const row = tableBody.insertRow();
+                row.className = 'hover:bg-gray-800';
+                row.innerHTML = `
+                    <td class="px-4 py-2 border-b border-gray-600">${job}</td>
+                    <td class="px-4 py-2 border-b border-gray-600 text-right">${totalData[index].toLocaleString()}</td>
+                    <td class="px-4 py-2 border-b border-gray-600 text-right">${dataPria[index].toLocaleString()}</td>
+                    <td class="px-4 py-2 border-b border-gray-600 text-right">${dataWanita[index].toLocaleString()}</td>
+                `;
+            });
+        }
+
+        // --- Event Listener untuk Filter Tahun ---
+        tahunFilter.addEventListener('change', function() {
+            renderChartsAndData(this.value);
+        });
+
+        // Render chart pertama kali saat halaman dimuat (untuk tahun default)
+        renderChartsAndData(tahunFilter.value);
+
+        // --- Inisialisasi Peta Interaktif (Leaflet.js) ---
+        // Koordinat contoh untuk Gunungsari, Probolinggo (Anda perlu menyesuaikannya agar akurat)
+        const latitude = -7.6079257; // Lintang hipotetis
+        const longitude = 112.7360686; // Bujur hipotetis
+        const zoomLevel = 13; // Sesuaikan tingkat zoom awal
+
+        // Hapus teks placeholder setelah peta dimuat
+        const mapPlaceholder = document.querySelector('#map-container p');
+        if (mapPlaceholder) {
+            mapPlaceholder.remove();
+        }
+
+        const map = L.map('map-container').setView([latitude, longitude], zoomLevel);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Contoh menambahkan marker di lokasi kantor desa (gunakan koordinat yang sebenarnya)
+        L.marker([latitude, longitude]).addTo(map)
+            .bindPopup('<b>Kantor Desa Gunungsari</b><br>Beji Pasuruan, Jawa Timur.')
+            .openPopup();
+            
+        // Anda bisa menambahkan marker lain jika memiliki koordinat spesifik
+        // L.marker([-7.8450, 113.1950]).addTo(map)
+        //     .bindPopup('<b>Tempat Wisata X</b>');
+    });
+</script>
+
 </body>
 </html>
