@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peraturan Desa | Desa Gunung Sari</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Nunito', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#05221D] text-white">
+
+<!-- Navbar -->
+<nav class="bg-[#05221D] fixed top-0 w-full z-50 shadow px-6 py-4 flex justify-between items-center">
+  <div class="flex items-center gap-2">
+    <div class="bg-[#327A6D] text-white font-bold w-8 h-8 flex items-center justify-center rounded">GS</div>
+    <span class="text-lg font-semibold text-white">Desa Gunungsari</span>
+  </div>
+  <ul class="hidden md:flex gap-6 text-white font-medium">
+    <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
+    <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
+    <li class="relative group">
+      <a href="datadesa.html" class="hover:text-yellow-300">📊 Data Desa ▾</a>
+      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pendidikan</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Data Pekerjaan</a></li>
+      </ul>
+    </li>
+    <li><a href="danadesa.html" class="hover:text-yellow-300">💰 Dana Desa</a></li>
+    <li class="relative group">
+      <button class="hover:text-yellow-300">⚖️ Regulasi ▾</button>
+      <ul class="absolute hidden group-hover:block bg-white text-black mt-2 w-64 rounded shadow-lg z-50">
+        <li><a href="peraturan-desa.html" class="block px-4 py-2 hover:bg-gray-100">Peraturan Desa</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Keputusan Kepala Desa</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Peraturan BPD</a></li>
+        <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Informasi Publik</a></li>
+      </ul>
+    </li>
+    <li><a href="programkerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
+    <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+    <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- Spacer -->
+<div class="pt-24"></div>
+
+<!-- Header -->
+<header class="bg-[#327A6D] text-white text-center py-10 px-6">
+  <h1 class="text-3xl sm:text-4xl font-extrabold mb-2">📘 Peraturan Desa</h1>
+  <p class="text-lg">Daftar peraturan resmi yang telah disahkan oleh Pemerintah Desa Gunung Sari</p>
+</header>
+
+<!-- Konten -->
+<main class="max-w-6xl mx-auto p-6 bg-white text-gray-800 rounded-lg shadow-lg mb-16" data-aos="fade-up">
+  <table class="w-full border border-gray-300 text-sm">
+    <thead class="bg-green-100">
+      <tr>
+        <th class="p-3 border">No</th>
+        <th class="p-3 border text-left">Judul Peraturan</th>
+        <th class="p-3 border text-center">Tahun</th>
+        <th class="p-3 border text-center">Unduh</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hover:bg-gray-50">
+        <td class="p-3 border text-center">1</td>
+        <td class="p-3 border">Peraturan Desa tentang Rencana Pembangunan Jangka Menengah Desa (RPJMDes) 2025–2030</td>
+        <td class="p-3 border text-center">2025</td>
+        <td class="p-3 border text-center"><a href="#" class="text-blue-600 hover:underline">📥 PDF</a></td>
+      </tr>
+      <tr class="hover:bg-gray-50">
+        <td class="p-3 border text-center">2</td>
+        <td class="p-3 border">Peraturan Desa tentang Anggaran Pendapatan dan Belanja Desa (APBDes) Tahun 2025</td>
+        <td class="p-3 border text-center">2025</td>
+        <td class="p-3 border text-center"><a href="#" class="text-blue-600 hover:underline">📥 PDF</a></td>
+      </tr>
+      <tr class="hover:bg-gray-50">
+        <td class="p-3 border text-center">3</td>
+        <td class="p-3 border">Peraturan Desa tentang Pengelolaan Sampah dan Lingkungan Hidup</td>
+        <td class="p-3 border text-center">2024</td>
+        <td class="p-3 border text-center"><a href="#" class="text-blue-600 hover:underline">📥 PDF</a></td>
+      </tr>
+      <tr class="hover:bg-gray-50">
+        <td class="p-3 border text-center">4</td>
+        <td class="p-3 border">Peraturan Desa tentang Tata Cara Pemilihan Kepala Dusun</td>
+        <td class="p-3 border text-center">2023</td>
+        <td class="p-3 border text-center"><a href="#" class="text-blue-600 hover:underline">📥 PDF</a></td>
+      </tr>
+    </tbody>
+  </table>
+</main>
+
+<!-- Footer -->
+<footer class="w-full bg-[#327A6D] text-white">
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-8">
+    <div class="flex-1">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="bg-white text-[#327A6D] w-10 h-10 flex items-center justify-center font-bold rounded-full text-lg">GS</div>
+        <span class="text-xl font-semibold">Desa Gunungsari</span>
+      </div>
+      <p class="text-sm leading-relaxed">
+        Desa Gunungsari merupakan wilayah yang kaya akan potensi alam, budaya, dan UMKM. Komitmen kami adalah membangun desa yang mandiri dan berdaya saing.
+      </p>
+    </div>
+    <div class="flex-1 grid grid-cols-2 gap-6 text-center">
+      <div>
+        <h4 class="font-bold mb-2">Kontak</h4>
+        <p class="text-sm">📍 Jln. Banyulegi RT.14 RW.05 Gunungsari</p>
+        <p class="text-sm">✉️ Kantordesagunungsari02@gmail.com</p>
+        <p class="text-sm">📞 +62 343-653-0883</p>
+      </div>
+      <div>
+        <h4 class="font-bold mb-2">Tautan</h4>
+        <ul class="text-sm space-y-1">
+          <li><a href="profil.html" class="hover:underline">Profil Desa</a></li>
+          <li><a href="#" class="hover:underline">Layanan Publik</a></li>
+          <li><a href="produk.html" class="hover:underline">Produk UMKM</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="text-center text-sm text-white py-6 space-y-1">
+    <div>&copy; 2025 Desa Gunungsari. All Rights Reserved</div>
+    <div>Designed by siska</div>
+  </div>
+</footer>
+
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+</script>
+
+</body>
+</html>
