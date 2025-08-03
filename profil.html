@@ -149,6 +149,8 @@
     nav a.active {
       transform: scale(1.05);
     }
+     .mobile-submenu { display: none; }
+    .mobile-submenu.active { display: block; }
   </style>
 </head>
 <body class="text-gray-800 overflow-x-hidden bg-white">
@@ -158,6 +160,10 @@
      <img src="images/logo kabupaten pasuruan.png" alt="Logo Kabupaten Pasuruan" class="w-8 h-8 object-contain" />
       <span class="text-lg font-semibold">Desa GunungSari</span>
     </div>
+     <!-- Tombol hamburger -->
+      <button id="hamburger-btn" class="md:hidden text-white text-2xl focus:outline-none">
+        ☰
+      </button>
     <!-- Beranda -->
           <ul class="hidden md:flex gap-6 text-white font-medium">
           <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
@@ -403,13 +409,12 @@
     </div>
   </section>
 
-<!-- Footer: FIX Background rata penuh -->
+ <!-- Footer: Responsive & Mobile Friendly -->
 <footer class="w-full bg-[#327A6D] text-white">
-  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-8">
-    
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row md:justify-between gap-8">
     <!-- Kolom Kiri -->
-    <div class="flex-1">
-      <div class="flex items-center gap-3 mb-3">
+    <div class="flex-1 mb-8 md:mb-0 text-center md:text-left">
+      <div class="flex items-center gap-3 mb-3 justify-center md:justify-start">
         <img src="images/logo kabupaten pasuruan.png" alt="Logo Kabupaten Pasuruan" class="w-8 h-8 object-contain" />
         <span class="text-xl font-semibold">Desa Gunungsari</span>
       </div>
@@ -417,9 +422,8 @@
         Desa Gunungsari merupakan wilayah yang kaya akan potensi alam, budaya, dan UMKM. Komitmen kami adalah membangun desa yang mandiri dan berdaya saing.
       </p>
     </div>
-
     <!-- Kolom Kanan -->
-    <div class="flex-1 grid grid-cols-2 gap-6 text-center">
+    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
       <div>
         <h4 class="font-bold mb-2">Kontak</h4>
         <p class="text-sm">📍 Jln. Banyulegi RT.14 RW.05 Gunungsari</p>
@@ -436,14 +440,12 @@
       </div>
     </div>
   </div>
-
   <!-- Copyright -->
   <div class="text-center text-sm text-white py-6 space-y-1">
     <div>&copy; 2025 Desa Gunungsari. All Rights Reserved</div>
     <div>Designed by siska</div>
   </div>
 </footer>
-
   <script>
     function highlightCard(clickedCard) {
       document.querySelectorAll("#berita-list > div").forEach(card => {
@@ -498,5 +500,14 @@
     clickedCard.classList.add("bg-[#327a6d]", "text-white", "active");
   };
 </script>
+<script>
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburgerBtn.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden');
+  });
+</script>
+
+
 </body>
 </html>
