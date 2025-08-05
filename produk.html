@@ -97,12 +97,12 @@
 
   <!-- Menu Mobile (Muncul saat hamburger diklik) -->
   <ul id="mobile-menu" class="md:hidden hidden flex flex-col bg-[#05221D] text-white text-center gap-4 py-4 mt-[72px] shadow transition-all duration-300 ease-in-out">
-    <li><a href="index.html" class="text-green-700 font-semibold">🏠 Beranda</a></li>
+    <li><a href="index.html" class="hover:text-yellow-300">🏠 Beranda</a></li>
     <li><a href="profil.html" class="hover:text-yellow-300">👤 Profil</a></li>
-    <li><a href="datadesa.html" class="hover:text-yellow-300">📊 Data Desa</a></li
+    <li><a href="datadesa.html" class="hover:text-yellow-300">📊 Data Desa</a></li>
     <li><a href="danadesa.html" class="hover:text-yellow-300">💰 Dana Desa</a></li>
     <li class="relative group">
-      <button class="text-white hover:text-yellow-300 flex items-center">⚖️ Regulasi ▾</button>
+      <button class="text-white hover:text-yellow-300 flex items-center justify center mx-auto">⚖️ Regulasi ▾</button>
       <ul class="absolute hidden group-hover:block bg-black mt-2 w-64 rounded shadow-lg z-50">
         <li>
           <a href="peraturan-desa.html" class="block px-4 py-2 text-white hover:text-yellow-300">Peraturan Desa</a>
@@ -119,7 +119,7 @@
       </ul>
     </li>
     <li><a href="programkerja.html" class="hover:text-yellow-300">🗂️ Program Kerja</a></li>
-    <li><a href="produk.html" class="hover:text-yellow-300">📦 Produk</a></li>
+    <li><a href="produk.html" class="text-yellow-300">📦 Produk</a></li>
     <li><a href="kontak.html" class="hover:text-yellow-300">📞 Kontak</a></li>
   </ul>
 
@@ -239,6 +239,33 @@
         </div>
       </div>
     </div>
+
+     <!-- Produk 4 -->
+    <div class="bg-[#327A6D]  rounded-lg shadow-lg overflow-hidden relative hover:shadow-2xl transition duration-300" data-aos="zoom-in" data-aos-delay="200">
+      <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-semibold shadow">Diskon</div>
+      <img src="banana.jpg" alt="Keripik Singkong" class="w-full h-64 object-cover hover:scale-105 transition-transform duration-300" />
+      <div class="p-4">
+        <h3 class="font-bold text-lg">Banana chips</h3>
+        <p class="text-sm text-white">keripik spesial berbahan pisang cavendish menghasilkan rasa lebih manis dan tekstur gurih</p>
+        <div class="text-sm text-yellow-500 mt-2">⭐ 4.7 • 320 terjual</div>
+        <div class="flex items-baseline gap-2 mt-2">
+          <span class="text-green-200 font-bold text-lg">Rp 12.000</span>
+          <span class="line-through text-gray-400 text-sm">Rp 18.000</span>
+        </div>
+        <div class="mt-4 flex justify-center gap-2">
+          <a href="#" class="bg-orange-500 text-white px-1 py-1 rounded flex items-center gap-1 text-xs hover:bg-orange-600 transition">
+            <i class="fab fa-shopify"></i> Shopee
+          </a>
+        <a href="https://www.tiktok.com/@bumdes.gunungsari?_t=ZS-8y4huZhNPtw&_r=1" class="bg-black text-white px-1 py-1 rounded flex items-center gap-1 text-xs hover:bg-gray-800 transition">
+        <i class="fab fa-tiktok"></i> TikTok
+        <!-- Tombol WhatsApp -->
+      <a href="https://wa.me/62881026548609" target="_blank" class="bg-green-600 text-white px-1 py-1 rounded flex items-center gap-1 text-xs hover:bg-green-700 transition">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+          </a>
+        </div>
+      </div>
+    </div>
   </main>
 <section class="background-image bg-cover bg-center flex items-center justify-center text-white relative" style="background-image: url('images/produk-background.jpg');">
   <div class="absolute inset-0 bg-black opacity-50"></div>
@@ -285,15 +312,12 @@
   </div>
 </section>
 
-
-
-<!-- Footer: FIX Background rata penuh -->
+<!-- Footer: Responsive & Mobile Friendly -->
 <footer class="w-full bg-[#327A6D] text-white">
-  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between gap-8">
-    
+  <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row md:justify-between gap-8">
     <!-- Kolom Kiri -->
-    <div class="flex-1">
-      <div class="flex items-center gap-3 mb-3">
+    <div class="flex-1 mb-8 md:mb-0 text-center md:text-left">
+      <div class="flex items-center gap-3 mb-3 justify-center md:justify-start">
         <img src="images/logo kabupaten pasuruan.png" alt="Logo Kabupaten Pasuruan" class="w-8 h-8 object-contain" />
         <span class="text-xl font-semibold">Desa Gunungsari</span>
       </div>
@@ -301,9 +325,8 @@
         Desa Gunungsari merupakan wilayah yang kaya akan potensi alam, budaya, dan UMKM. Komitmen kami adalah membangun desa yang mandiri dan berdaya saing.
       </p>
     </div>
-
     <!-- Kolom Kanan -->
-    <div class="flex-1 grid grid-cols-2 gap-6 text-center">
+    <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
       <div>
         <h4 class="font-bold mb-2">Kontak</h4>
         <p class="text-sm">📍 Jln. Banyulegi RT.14 RW.05 Gunungsari</p>
@@ -314,17 +337,16 @@
         <h4 class="font-bold mb-2">Tautan</h4>
         <ul class="text-sm space-y-1">
           <li><a href="profil.html" class="hover:underline">Profil Desa</a></li>
-          <li><a href="#" class="hover:underline">Layanan Publik</a></li>
+          <li><a href="kontak.html" class="hover:underline">Layanan Publik</a></li>
           <li><a href="produk.html" class="hover:underline">Produk UMKM</a></li>
         </ul>
       </div>
     </div>
   </div>
-
   <!-- Copyright -->
   <div class="text-center text-sm text-white py-6 space-y-1">
     <div>&copy; 2025 Desa Gunungsari. All Rights Reserved</div>
-    <div>Designed by siska</div>
+    <div>Designed by Siska</div>
   </div>
 </footer>
 
@@ -336,5 +358,25 @@
       once: true
     });
   </script>
+
+  <!-- JavaScript untuk Menu Mobile -->
+<script>
+  AOS.init({
+    duration: 1000,
+    once: true
+  });
+
+  // Tambahkan deklarasi variabel berikut:
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  // --- Fungsi untuk mengelola menu mobile ---
+  if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+          setTimeout(adjustMainContentPadding, 300);
+      });
+  }
+</script>
 </body>
 </html>
