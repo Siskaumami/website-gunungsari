@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "id": "foundation-website-gunungsari-20261122",
+  "what": "Document source-observed website scope for Nexron monitoring",
+  "why": "Generic onboarding omitted project-specific evidence and uncertainty",
+  "risks": "Static HTML and source assets do not prove current government approvals, accuracy of public information, visitor analytics or production availability.",
+  "goal_impact": "Improve project continuity without changing website design or functionality",
+  "actor_kind": "ai_generated",
+  "evidence": [
+    {
+      "repository_id": 1022392377,
+      "kind": "source",
+      "path": "index.html",
+      "commit": "d4a7e7de77d5d023f5d7e50ba533dfc0cdde4ad0"
+    }
+  ],
+  "decision_id": "NXR-FOUNDATION-20261122-WEBSITE-GUNUNGSARI"
+}

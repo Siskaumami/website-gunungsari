@@ -1,16 +1,17 @@
 {
   "version": 1,
   "repository_id": 1022392377,
-  "checkpoint_id": "onboarding",
-  "verified_at": "2026-11-19T11:53:19.556Z",
-  "foundation": "FOUNDATION_REQUIRED",
-  "actor_kind": "unknown",
-  "attribution": "UNVERIFIED",
+  "checkpoint_id": "foundation_website_gunungsari_20261122",
+  "verified_at": "2026-11-22T11:52:41.814Z",
+  "foundation": "DOCUMENTED",
+  "actor_kind": "ai_generated",
+  "attribution": "AI_AUTHORED_CLAIM",
   "evidence": [
     {
-      "kind": "commit",
       "repository_id": 1022392377,
-      "commit": "68e9bb23938e60b8c7f27bed802da04d032e1ff5"
+      "kind": "source",
+      "path": "index.html",
+      "commit": "d4a7e7de77d5d023f5d7e50ba533dfc0cdde4ad0"
     }
   ]
 }
